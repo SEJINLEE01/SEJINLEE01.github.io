@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이세진 — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@600;900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0f1419;
+    --bg3: #151d26;
+    --accent: #c9a84c;
+    --accent2: #e8c96a;
+    --text: #e8e4dc;
+    --muted: #7a8694;
+    --border: #1e2a36;
+    --card: #111820;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
+    background: var(--accent); transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative atom-like bg element */
+  .atom-bg {
+    position: absolute;
+    right: -100px; top: 50%;
+    transform: translateY(-50%);
+    width: 700px; height: 700px;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+  .atom-bg circle { fill: none; stroke: var(--accent); }
+  .atom-bg ellipse { fill: none; stroke: var(--accent); }
+
+  .hero-left { position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 2px;
+  }
+  .hero-tag span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  .hero-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-name-en {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem; color: var(--muted);
+    letter-spacing: 0.3em;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-quote {
+    font-size: 1rem; line-height: 1.8;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+    padding-left: 1.2rem;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-contacts {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem; color: var(--muted);
+  }
+  .contact-item .label {
+    color: var(--accent); min-width: 50px;
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .contact-item a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
+  .contact-item a:hover { color: var(--accent2); }
+
+  .hero-right {
+    display: flex; justify-content: center; align-items: center;
+    position: relative; z-index: 1;
+    opacity: 0;
+    animation: fadeIn 1s 1s forwards;
+  }
+  .photo-frame {
+    position: relative;
+    width: 260px; height: 320px;
+  }
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    top: 16px; left: 16px;
+    right: -16px; bottom: -16px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+  }
+  .photo-frame::after {
+    content: '';
+    position: absolute;
+    top: 8px; right: -8px;
+    width: 40%; height: 40%;
+    background: linear-gradient(135deg, rgba(201,168,76,0.15), transparent);
+    border-radius: 2px;
+  }
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--bg3), var(--bg2));
+    border-radius: 4px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+  .photo-placeholder svg { width: 80px; height: 80px; opacity: 0.2; }
+  .photo-placeholder span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; color: var(--muted);
+    margin-top: 0.5rem; letter-spacing: 0.1em;
+  }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3rem; }
+  section:nth-child(even) { background: var(--bg2); }
+
+  .section-header {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; color: var(--accent);
+    letter-spacing: 0.2em;
+    opacity: 0.7;
+  }
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 2rem; font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .section-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+  }
+
+  .max-w { max-width: 900px; margin: 0 auto; }
+
+  /* ── TIMELINE (Education / Cert / Award) ── */
+  .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+  .timeline-item {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 1.5rem; align-items: start;
+    padding: 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    border-left: 2px solid var(--accent);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .timeline-item:hover {
+    border-left-color: var(--accent2);
+    transform: translateX(4px);
+  }
+  .timeline-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--accent);
+    letter-spacing: 0.05em; padding-top: 2px;
+  }
+  .timeline-content-title {
+    font-size: 0.95rem; font-weight: 500;
+    color: var(--text); margin-bottom: 0.25rem;
+  }
+  .timeline-content-sub {
+    font-size: 0.8rem; color: var(--muted);
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1rem;
+  }
+  .skill-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: border-color 0.3s;
+  }
+  .skill-item:hover { border-color: rgba(201,168,76,0.4); }
+  .skill-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem; color: var(--text);
+  }
+  .skill-stars { display: flex; gap: 4px; }
+  .star { width: 14px; height: 14px; }
+  .star.filled path { fill: var(--accent); }
+  .star.empty path { fill: var(--border); }
+  .skill-bar-wrap {
+    display: flex; align-items: center; gap: 1rem;
+    flex: 1; margin: 0 1.5rem;
+  }
+  .skill-bar {
+    flex: 1; height: 3px;
+    background: var(--border); border-radius: 99px; overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform-origin: left;
+    animation: barGrow 1.2s cubic-bezier(0.25,1,0.5,1) forwards;
+    transform: scaleX(0);
+  }
+  @keyframes barGrow { to { transform: scaleX(1); } }
+
+  /* ── PROJECTS CAROUSEL ── */
+  .carousel-wrapper { position: relative; }
+
+  .carousel-viewport { overflow: hidden; }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-card {
+    min-width: 100%;
+    max-width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .project-card:hover {
+    border-color: rgba(201,168,76,0.35);
+    transform: translateY(-3px);
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+
+  .project-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .project-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.35rem; font-weight: 900;
+    color: var(--text); margin-bottom: 0.9rem;
+  }
+  .project-desc {
+    font-size: 0.83rem; line-height: 1.8;
+    color: var(--muted); margin-bottom: 1.2rem;
+    flex: 1;
+  }
+  .project-highlight {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--accent2);
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+  }
+  .project-meta {
+    display: flex; flex-direction: column;
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+  .meta-block {
+    background: var(--bg3);
+    border-radius: 4px; padding: 0.85rem;
+    border: 1px solid var(--border);
+  }
+  .meta-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .meta-title::before {
+    content: ''; display: inline-block;
+    width: 1px; height: 9px; background: var(--accent);
+  }
+  .meta-body { font-size: 0.75rem; color: var(--muted); line-height: 1.8; }
+
+  /* Controls */
+  .carousel-controls {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+  .carousel-arrows { display: flex; gap: 0.75rem; }
+  .carousel-btn {
+    width: 44px; height: 44px;
+    border-radius: 4px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .carousel-btn:hover:not(:disabled) {
+    background: var(--bg3);
+    border-color: rgba(201,168,76,0.4);
+    color: var(--accent);
+    transform: scale(1.05);
+  }
+  .carousel-btn:disabled { opacity: 0.3; cursor: default; }
+  .carousel-btn svg { width: 18px; height: 18px; }
+
+  .carousel-dots { display: flex; gap: 0.5rem; align-items: center; }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 0.3s, width 0.3s;
+    border: none;
+  }
+  .dot.active { background: var(--accent); width: 20px; border-radius: 3px; }
+
+  .carousel-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; color: var(--muted);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .carousel-counter .current { color: var(--accent); font-size: 1rem; }
+
+  @media (max-width: 640px) {
+    .project-card { min-width: 100%; max-width: 100%; }
+  }
+
+  /* ── SITE LINKS ── */
+  .site-cards { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .site-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px; padding: 1.2rem 1.5rem;
+    text-decoration: none;
+    transition: border-color 0.3s, transform 0.3s;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .site-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-2px);
+  }
+  .site-card-icon {
+    width: 36px; height: 36px;
+    background: var(--bg3);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .site-card-icon svg { width: 18px; height: 18px; }
+  .site-card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; color: var(--text); display: block;
+    margin-bottom: 0.2rem;
+  }
+  .site-card-sub {
+    font-size: 0.7rem; color: var(--muted);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 3rem;
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; }
+    .hero-right { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">LSJ.DEV</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="about">
+  <div id="hero" style="padding-left: max(3rem, calc(50% - 420px)); padding-right: 3rem;">
+    <div class="hero-left">
+      <div class="hero-tag"><span></span> Computer Engineer</div>
+      <h1 class="hero-name">이세진</h1>
+      <p class="hero-name-en">LEE SE-JIN</p>
+      <blockquote class="hero-quote">
+        정답을 찾는 것을 너머,<br>
+        최선의 효율을 낼 때까지<br>
+        멈추지 않습니다!
+      </blockquote>
+      <div class="hero-contacts">
+        <div class="contact-item">
+          <span class="label">Mail</span>
+          <a href="mailto:et2284@naver.com">et2284@naver.com</a>
+          <span style="color:var(--border)">·</span>
+          <a href="mailto:stacrft@gmail.com">stacrft@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="label">Tel</span>
+          010-7325-2284
+        </div>
+        <div class="contact-item">
+          <span class="label">GitHub</span>
+          <a href="https://github.com/SEJINLEE01" target="_blank">SEJINLEE01</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="photo-frame">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="28" r="16" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 72c0-17.673 14.327-32 32-32s32 14.327 32 32" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>이세진</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Atom decorative -->
+    <svg class="atom-bg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="250" cy="250" r="20" stroke-width="2"/>
+      <ellipse cx="250" cy="250" rx="200" ry="70" stroke-width="1.5"/>
+      <ellipse cx="250" cy="250" rx="200" ry="70" stroke-width="1.5" transform="rotate(60 250 250)"/>
+      <ellipse cx="250" cy="250" rx="200" ry="70" stroke-width="1.5" transform="rotate(120 250 250)"/>
+      <circle cx="250" cy="180" r="6" fill="rgba(201,168,76,0.5)" stroke="none"/>
+      <circle cx="323" cy="285" r="6" fill="rgba(201,168,76,0.5)" stroke="none"/>
+      <circle cx="177" cy="285" r="6" fill="rgba(201,168,76,0.5)" stroke="none"/>
+    </svg>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="max-w">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">학력 · 자격증 · 수상</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:3rem; flex-wrap: wrap;">
+      <!-- 학력 -->
+      <div class="reveal">
+        <p style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1.2rem;">📚 Education</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-date">2020.03 — 2026.02</span>
+            <div>
+              <p class="timeline-content-title">한성대학교</p>
+              <p class="timeline-content-sub">컴퓨터공학과 졸업</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 자격증 + 수상 -->
+      <div>
+        <div class="reveal" style="margin-bottom:2rem;">
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1.2rem;">📋 Certifications</p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-date">2025.09.25</span>
+              <div>
+                <p class="timeline-content-title">컴퓨터활용능력 1급</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-date">2024.08.13</span>
+              <div>
+                <p class="timeline-content-title">JLPT N2</p>
+                <p class="timeline-content-sub">일본어능력시험</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <p style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1.2rem;">🏆 Awards</p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-date">2025.05.30</span>
+              <div>
+                <p class="timeline-content-title">캡스톤디자인 작품발표회</p>
+                <p class="timeline-content-sub">장려상</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="max-w">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid reveal">
+
+      <!-- C ★★ = 2/5 -->
+      <div class="skill-item">
+        <span class="skill-name">C</span>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:40%; animation-delay:0.1s;"></div></div>
+        </div>
+        <div class="skill-stars">
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+          <svg class="star empty" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+        </div>
+      </div>
+
+      <!-- JAVA ★★ -->
+      <div class="skill-item">
+        <span class="skill-name">Java</span>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:40%; animation-delay:0.2s;"></div></div>
+        </div>
+        <div class="skill-stars">
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+          <svg class="star empty" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+        </div>
+      </div>
+
+      <!-- C++ ★★★ -->
+      <div class="skill-item">
+        <span class="skill-name">C++</span>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:60%; animation-delay:0.3s;"></div></div>
+        </div>
+        <div class="skill-stars">
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+        </div>
+      </div>
+
+      <!-- Python ★★ -->
+      <div class="skill-item">
+        <span class="skill-name">Python</span>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:40%; animation-delay:0.4s;"></div></div>
+        </div>
+        <div class="skill-stars">
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+          <svg class="star empty" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+        </div>
+      </div>
+
+      <!-- Ladder(PLC) ★★★ -->
+      <div class="skill-item">
+        <span class="skill-name">Ladder (PLC)</span>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:60%; animation-delay:0.5s;"></div></div>
+        </div>
+        <div class="skill-stars">
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+          <svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="max-w">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="carousel-wrapper reveal">
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack">
+
+          <!-- SLIDE 1: 캡스톤 디자인 -->
+          <div class="project-card">
+            <span class="project-tag">🎓 대학교 졸업작품 · 캡스톤 디자인</span>
+            <h3 class="project-title">원자의 세계 속으로</h3>
+            <p class="project-highlight">"교과서 속 평면적인 원자가 당신의 눈앞에서 살아 움직입니다."</p>
+            <p class="project-desc">몰입형 VR 기술을 통해 보이지 않는 원자와 분자의 구조를 가상 공간에 구현한 디지털 콘텐츠 캡스톤 디자인 프로젝트입니다. 단순한 관찰을 넘어, 사용자가 직접 원자를 만지고 결합하며 화학의 원리를 체득할 수 있는 혁신적인 교육 경험을 선사합니다.</p>
+            <div class="project-meta">
+              <div class="meta-block">
+                <p class="meta-title">Information</p>
+                <p class="meta-body">개발 기간: 2025/01/08 — 2025/05/28<br>팀 구성: 5인<br>담당 업무: 개발 총괄, HandTracking 개발</p>
+              </div>
+              <div class="meta-block">
+                <p class="meta-title">Review</p>
+                <p class="meta-body">Meta XR SDK의 핸드 트래킹 기술을 도입하며, 사용자의 손동작을 인식하고 물리적인 상호작용(Grabbing, Poking)을 구현하는 법을 익혔습니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 2: PLC 미니 프로젝트 -->
+          <div class="project-card">
+            <span class="project-tag">⚙️ AI융합 로봇SW 개발자 2기 · 미니 PLC 프로젝트</span>
+            <h3 class="project-title">PLC 미니 프로젝트</h3>
+            <p class="project-highlight">이론으로만 접했던 PLC의 점접과 데이터 제어를 실제 공정 흐름에 녹여내며, '재질별 3단 적재'라는 정밀 자동 제어와 큐(Queue)를 활용한 유연한 수동 제어를 하나의 유기적인 논리로 통합하였습니다.</p>
+            <p class="project-desc">소재의 부재, 창고의 적재 상태, 사용자의 다중 명령 예약 등 실제 산업 현장에서 마주할 수 있는 시나리오를 논리적으로 해결해 나가는 과정을 담았습니다.</p>
+            <div class="project-meta">
+              <div class="meta-block">
+                <p class="meta-title">Information</p>
+                <p class="meta-body">개발 기간: 2026/02/04 — 2026/02/06<br>팀 구성: 2인<br>담당 업무: 로그인 및 수동 제어 개발</p>
+              </div>
+              <div class="meta-block">
+                <p class="meta-title">Review</p>
+                <p class="meta-body">시퀀스 제어의 구조화 및 HMI를 통해 최대 4개까지의 연속 명령을 예약할 수 있는 수동 제어 시스템을 구현하여 작업 효율을 높였습니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 3: MediaPipe DNN -->
+          <div class="project-card">
+            <span class="project-tag">🤖 AI융합 로봇SW 개발자 2기 · Python Project</span>
+            <h3 class="project-title">MediaPipe &amp; 커스텀 DNN 제스처 인터페이스</h3>
+            <p class="project-highlight">하나의 제스처 인식 엔진으로 PC 응용체제(마우스/키보드)와 RC카라는 이질적인 두 시스템을 통합 제어하는 데 성공했습니다.</p>
+            <p class="project-desc">MediaPipe Hand Landmark와 커스텀 DNN을 결합하여 손 제스처를 실시간으로 분류하고, BLE HID와 TCP 소켓이라는 서로 다른 통신 프로토콜로 각 디바이스를 제어하는 통합 파이프라인을 구축했습니다.</p>
+            <div class="project-meta">
+              <div class="meta-block">
+                <p class="meta-title">Information</p>
+                <p class="meta-body">개발 기간: 2026/03/06 — 2026/03/20<br>팀 구성: 4인<br>담당 업무: 제스처 인식 파이프라인 및 모델 개발</p>
+              </div>
+              <div class="meta-block">
+                <p class="meta-title">Review</p>
+                <p class="meta-body">MediaPipe 21개 관절점 3D 좌표를 각도(angle)로 변환한 16차원 벡터로 카메라 거리나 손의 위치 변화에 강인한 인식 성능을 확보했습니다. Keras 모델을 TensorFlow Lite로 변환하여 Raspberry Pi에서 실시간 추론이 가능하게 했습니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 4: STM32 RC카 -->
+          <div class="project-card">
+            <span class="project-tag">🚗 임베디드 시스템 개발 프로젝트</span>
+            <h3 class="project-title">STM32 WebSocket 기반 RC카 원격 제어 시스템</h3>
+            <p class="project-highlight">WebSocket 프로토콜을 활용하여 웹 환경에서 저지연 실시간 RC카 원격 제어 시스템을 구현했습니다.</p>
+            <p class="project-desc">ESP32와 STM32F411RE의 이중화 MCU 아키텍처를 통해 통신과 제어 로직을 분리하여, 웹 대시보드에서의 입력이 하드웨어까지 안정적으로 전달되는 엔드투엔드 시스템을 완성했습니다. 음성 인식(Whisper AI)과 TOF 센서를 결합한 자율 충돌 방지 기능을 탑재한 지능형 모빌리티 플랫폼을 구축했습니다.</p>
+            <div class="project-meta">
+              <div class="meta-block">
+                <p class="meta-title">Information</p>
+                <p class="meta-body">개발 기간: 2026/04/03 — 2026/04/13<br>팀 구성: 4인<br>담당 업무: STM32 펌웨어 개발<br>GitHub: <a href="https://github.com/kdm111/team2" target="_blank" style="color:var(--accent); text-decoration:none;">kdm111/team2</a></p>
+              </div>
+              <div class="meta-block">
+                <p class="meta-title">Tech Stack</p>
+                <p class="meta-body">STM32 · UART · PWM · WebSocket<br>I2C · TOF · Whisper AI<br>Raspberry Pi · C · Python</p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /track -->
+      </div><!-- /viewport -->
+
+      <!-- Controls -->
+      <div class="carousel-controls">
+        <div class="carousel-arrows">
+          <button class="carousel-btn" id="prevBtn" disabled aria-label="이전">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          <button class="carousel-btn" id="nextBtn" aria-label="다음">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots"></div>
+
+        <div class="carousel-counter">
+          <span class="current" id="counterCurrent">01</span>
+          <span style="color:var(--border);">/</span>
+          <span id="counterTotal">03</span>
+        </div>
+      </div>
+    </div><!-- /wrapper -->
+
+  </div>
+</section>
+
+<!-- CONTACT / SITE -->
+<section id="contact">
+  <div class="max-w">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Contact &amp; Links</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="site-cards reveal">
+      <a class="site-card" href="https://github.com/SEJINLEE01" target="_blank">
+        <div class="site-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+          </svg>
+        </div>
+        <div>
+          <span class="site-card-label">GitHub</span>
+          <span class="site-card-sub">SEJINLEE01 · 3 repositories</span>
+        </div>
+      </a>
+      <a class="site-card" href="mailto:et2284@naver.com">
+        <div class="site-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div>
+          <span class="site-card-label">E-mail</span>
+          <span class="site-card-sub">et2284@naver.com</span>
+        </div>
+      </a>
+      <div class="site-card">
+        <div class="site-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.65A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.14a16 16 0 006.95 6.95l1.41-1.41a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="site-card-label">Phone</span>
+          <span class="site-card-sub">010-7325-2284</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p style="margin-bottom:0.5rem; color:var(--accent); font-size:0.8rem; font-family:'Noto Serif KR',serif;">이세진</p>
+  © 2025 Lee Se-jin · Computer Engineer · All Rights Reserved
+</footer>
+
+<script>
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.timeline').forEach(tl => {
+    tl.querySelectorAll('.timeline-item').forEach((item, i) => {
+      item.style.transitionDelay = `${i * 0.1}s`;
+    });
+  });
+
+  // ── Carousel (1 card per step, 2 visible) ──
+  const track    = document.getElementById('carouselTrack');
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const dotsWrap = document.getElementById('carouselDots');
+  const counterCurrent = document.getElementById('counterCurrent');
+  const counterTotal   = document.getElementById('counterTotal');
+
+  const slides = Array.from(track.querySelectorAll('.project-card'));
+  const total  = slides.length;
+  let current  = 0;
+
+  counterTotal.textContent = String(total).padStart(2, '0');
+
+  // Build one dot per card
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `프로젝트 ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, total - 1));
+
+    // card width + gap (gap = 1.5rem = 24px)
+    const cardW = slides[0].offsetWidth;
+    const gap   = 0;
+    track.style.transform = `translateX(-${current * (cardW + gap)}px)`;
+
+    counterCurrent.textContent = String(current + 1).padStart(2, '0');
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+    dotsWrap.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+
+  // Touch / swipe
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend',   e => {
+    const dx = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) { dx > 0 ? goTo(current + 1) : goTo(current - 1); }
+  });
+
+  // Recalculate on resize
+  window.addEventListener('resize', () => goTo(current));
+</script>
+</body>
+</html>
