@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>이세진 — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@600;900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght=300;400;500;700;900&family=Noto+Serif+KR:wght=600;900&family=JetBrains+Mono:wght=300;400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #080c10;
@@ -74,7 +74,10 @@
   .contact-item .label { color: var(--accent); min-width: 50px; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
   .contact-item a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
   .contact-item a:hover { color: var(--accent2); }
-  .hero-right { display: flex; justify(content: center; align-items: center; position: relative; z-index: 1; opacity: 0; animation: fadeIn 1s 1s forwards; }
+  
+  /* ── 이 부분 오타 수정완료 ── */
+  .hero-right { display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; opacity: 0; animation: fadeIn 1s 1s forwards; }
+  
   .photo-frame { position: relative; width: 260px; height: 320px; }
   .photo-frame::before { content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 1px solid rgba(201,168,76,0.3); border-radius: 4px; }
   .photo-frame::after { content: ''; position: absolute; top: 8px; right: -8px; width: 40%; height: 40%; background: linear-gradient(135deg, rgba(201,168,76,0.15), transparent); border-radius: 2px; }
@@ -220,13 +223,9 @@
   code { background: rgba(201,168,76,0.1); padding: 0.1rem 0.3rem; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent2); margin: 0 0.1rem; white-space: normal; }
   .trouble-box { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2); border-left: 4px solid var(--accent); border-radius: 4px; padding: 1.5rem; margin-bottom: 1.5rem; }
   .trouble-box h4 { font-size: 0.95rem; color: var(--text); margin-bottom: 1.2rem; }
-  .trouble-step { margin-bottom: 1rem; }
-  .trouble-step strong.step-title { display: block; font-size: 0.8rem; color: var(--accent); margin-bottom: 0.3rem; letter-spacing: 0.05em; font-weight: 700; }
-  .trouble-step p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin: 0; }
-  .modal-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.82rem; }
-  .modal-table th { background: var(--bg3); color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.7rem 1rem; text-align: left; border: 1px solid var(--border); }
-  .modal-table td { padding: 0.65rem 1rem; border: 1px solid var(--border); color: var(--muted); line-height: 1.6; }
-  .modal-table tr:hover td { background: rgba(201,168,76,0.03); }
+  .trouble-box .trouble-step { margin-bottom: 1rem; }
+  .trouble-box .trouble-step strong.step-title { display: block; font-size: 0.8rem; color: var(--accent); margin-bottom: 0.3rem; letter-spacing: 0.05em; font-weight: 700; }
+  .trouble-box .trouble-step p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin: 0; }
   .site-cards { display: flex; gap: 1rem; flex-wrap: wrap; }
   .site-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1.2rem 1.5rem; text-decoration: none; transition: border-color 0.3s, transform 0.3s; display: flex; align-items: center; gap: 1rem; }
   .site-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); }
@@ -309,11 +308,10 @@
       <h2 class="section-title">학력 · 자격증 · 수상</h2>
       <div class="section-line"></div>
     </div>
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:3rem; flex-wrap: wrap;">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:3rem;">
       <div class="reveal">
         <p style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1.2rem;">📚 Education</p>
         <div class="timeline">
-          <div class="timeline-item"><span class="timeline-date">2017.03 — 2020.02</span><div><p class="timeline-content-title">양평고등학교</p><p class="timeline-content-sub">졸업</p></div></div>
           <div class="timeline-item"><span class="timeline-date">2020.03 — 2026.02</span><div><p class="timeline-content-title">한성대학교</p><p class="timeline-content-sub">컴퓨터공학과 졸업</p></div></div>
         </div>
       </div>
