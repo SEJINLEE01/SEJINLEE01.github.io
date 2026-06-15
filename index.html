@@ -18,6 +18,7 @@
     --muted: #7a8694;
     --border: #1e2a36;
     --card: #111820;
+    --glow: rgba(201, 168, 76, 0.15);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -73,7 +74,7 @@
   .contact-item .label { color: var(--accent); min-width: 50px; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
   .contact-item a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
   .contact-item a:hover { color: var(--accent2); }
-  .hero-right { display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; opacity: 0; animation: fadeIn 1s 1s forwards; }
+  .hero-right { display: flex; justify(content: center; align-items: center; position: relative; z-index: 1; opacity: 0; animation: fadeIn 1s 1s forwards; }
   .photo-frame { position: relative; width: 260px; height: 320px; }
   .photo-frame::before { content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 1px solid rgba(201,168,76,0.3); border-radius: 4px; }
   .photo-frame::after { content: ''; position: absolute; top: 8px; right: -8px; width: 40%; height: 40%; background: linear-gradient(135deg, rgba(201,168,76,0.15), transparent); border-radius: 2px; }
@@ -91,8 +92,8 @@
   .max-w { max-width: 900px; margin: 0 auto; }
 
   .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
-  .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 4px; border-left: 2px solid var(--accent); transition: border-color 0.3s, transform 0.3s; }
-  .timeline-item:hover { border-left-color: var(--accent2); transform: translateX(4px); }
+  .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 4px; border-left: 2px solid var(--accent); transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+  .timeline-item:hover { border-left-color: var(--accent2); transform: translateX(4px); box-shadow: 0 4px 20px var(--glow); }
   .timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.05em; padding-top: 2px; }
   .timeline-content-title { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
   .timeline-content-sub { font-size: 0.8rem; color: var(--muted); }
@@ -163,8 +164,8 @@
   .carousel-wrapper { position: relative; }
   .carousel-viewport { overflow: hidden; }
   .carousel-track { display: flex; transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
-  .project-card { min-width: 100%; max-width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; position: relative; overflow: hidden; flex-shrink: 0; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; }
-  .project-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-3px); }
+  .project-card { min-width: 100%; max-width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; position: relative; overflow: hidden; flex-shrink: 0; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+  .project-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-3px); box-shadow: 0 8px 30px var(--glow); }
   .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
   .project-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
   .project-title { font-family: 'Noto Serif KR', serif; font-size: 1.35rem; font-weight: 900; color: var(--text); margin-bottom: 0.9rem; }
@@ -176,7 +177,7 @@
   .meta-title::before { content: ''; display: inline-block; width: 1px; height: 9px; background: var(--accent); }
   .meta-body { font-size: 0.75rem; color: var(--muted); line-height: 1.8; }
   .btn-detail { margin-top: 1.5rem; padding: 0.7rem 1.4rem; background: transparent; border: 1px solid rgba(201,168,76,0.5); color: var(--accent); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; cursor: pointer; transition: all 0.3s; align-self: flex-start; }
-  .btn-detail:hover { background: rgba(201,168,76,0.1); border-color: var(--accent); transform: translateY(-2px); }
+  .btn-detail:hover { background: rgba(201,168,76,0.1); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px var(--glow); }
   .carousel-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; }
   .carousel-arrows { display: flex; gap: 0.75rem; }
   .carousel-btn { width: 44px; height: 44px; border-radius: 4px; background: var(--card); border: 1px solid var(--border); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s; }
@@ -336,7 +337,6 @@
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="max-w">
     <div class="section-header reveal">
@@ -425,7 +425,6 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="max-w">
     <div class="section-header reveal">
@@ -440,8 +439,8 @@
             <span class="project-tag">🎓 대학교 졸업작품 · 캡스톤 디자인</span>
             <h3 class="project-title">원자의 세계 속으로</h3>
             <p class="project-highlight">"교과서 속 평면적인 원자가 당신의 눈앞에서 살아 움직입니다."</p>
-            <p class="project-desc">몰입형 VR 기술을 통해 보이지 않는 원자와 분자의 구조를 가상 공간에 구현한 디지털 교육 콘텐츠 프로젝트입니다. 단순한 관찰을 넘어, 사용자가 직접 원자를 만지고 결합하며 화학의 원리를 체득할 수 있습니다.</p>
-            <button class="btn-detail" onclick="openProjectModal('capstone')">상세보기 및 트러블슈팅 보러가기 →</button>
+            <p class="project-desc">몰입형 VR 기술을 통해 보이지 않는 원자와 분자의 구조를 가상 공간에 구현한 디지털 교육 콘텐츠 프로젝트입니다. 사용자가 직접 원자를 만지고 결합하며 화학의 원리를 체득할 수 있습니다.</p>
+            <button class="btn-detail" onclick="openModal('capstone')">상세보기 및 트러블슈팅 보러가기 →</button>
             <div class="project-meta" style="margin-top: 2rem;">
               <div class="meta-block">
                 <p class="meta-title">Information</p>
@@ -452,9 +451,9 @@
           <div class="project-card">
             <span class="project-tag">⚙️ AI융합 로봇SW 개발자 2기 · 미니 PLC 프로젝트</span>
             <h3 class="project-title">PLC 미니 프로젝트</h3>
-            <p class="project-highlight">이론으로만 접했던 PLC의 점접과 데이터 제어를 실제 공정 흐름에 녹여내며, '재질별 3단 적재'라는 정밀 자동 제어와 큐(Queue)를 활용한 유연한 수동 제어를 하나의 유기적인 논리로 통합하였습니다.</p>
+            <p class="project-highlight">이론으로만 접했던 PLC의 접점과 데이터 제어를 실제 공정 흐름에 녹여내며, '재질별 3단 적재'라는 정밀 자동 제어와 큐(Queue)를 활용한 유연한 수동 제어를 하나의 유기적인 논리로 통합하였습니다.</p>
             <p class="project-desc">소재의 부재, 창고의 적재 상태, 사용자의 다중 명령 예약 등 실제 산업 현장에서 마주할 수 있는 시나리오를 논리적으로 해결해 나가는 과정을 담았습니다.</p>
-            <button class="btn-detail" onclick="openProjectModal('plc')">상세보기 및 트러블슈팅 보러가기 →</button>
+            <button class="btn-detail" onclick="openModal('plc')">상세보기 및 트러블슈팅 보러가기 →</button>
             <div class="project-meta" style="margin-top: 2rem;">
               <div class="meta-block">
                 <p class="meta-title">Information</p>
@@ -467,7 +466,8 @@
             <h3 class="project-title">MediaPipe &amp; 커스텀 DNN 제스처 인터페이스</h3>
             <p class="project-highlight">하나의 제스처 인식 엔진으로 PC 응용체제(마우스/키보드)와 RC카라는 이질적인 두 시스템을 통합 제어하는 데 성공했습니다.</p>
             <p class="project-desc">MediaPipe Hand Landmark와 커스텀 DNN을 결합하여 손 제스처를 실시간으로 분류하고, BLE HID와 TCP 소켓이라는 서로 다른 통신 프로토콜로 각 디바이스를 제어하는 통합 파이프라인을 구축했습니다.</p>
-            <div class="project-meta">
+            <button class="btn-detail" onclick="openModal('mediapipe')">상세보기 및 트러블슈팅 보러가기 →</button>
+            <div class="project-meta" style="margin-top: 2rem;">
               <div class="meta-block">
                 <p class="meta-title">Information</p>
                 <p class="meta-body">개발 기간: 2026/03/06 — 2026/03/20<br>팀 구성: 4인<br>담당 업무: 제스처 인식 파이프라인 및 모델 개발</p>
@@ -479,7 +479,8 @@
             <h3 class="project-title">STM32 WebSocket 기반 RC카 원격 제어 시스템</h3>
             <p class="project-highlight">WebSocket 프로토콜을 활용하여 웹 환경에서 저지연 실시간 RC카 원격 제어 시스템을 구현했습니다.</p>
             <p class="project-desc">ESP32와 STM32F411RE의 이중화 MCU 아키텍처를 통해 통신과 제어 로직을 분리하여, 웹 대시보드에서의 입력이 하드웨어까지 안정적으로 전달되는 엔드투엔드 시스템을 완성했습니다.</p>
-            <div class="project-meta">
+            <button class="btn-detail" onclick="openModal('stm32')">상세보기 및 트러블슈팅 보러가기 →</button>
+            <div class="project-meta" style="margin-top: 2rem;">
               <div class="meta-block">
                 <p class="meta-title">Information</p>
                 <p class="meta-body">개발 기간: 2026/04/03 — 2026/04/13<br>팀 구성: 4인<br>담당 업무: STM32 펌웨어 개발<br>GitHub: <a href="https://github.com/kdm111/team2" target="_blank" style="color:var(--accent); text-decoration:none;">kdm111/team2</a></p>
@@ -500,11 +501,10 @@
   </div>
 </section>
 
-<!-- CAPSTONE MODAL -->
-<div id="projectModal" class="modal-backdrop">
+<div id="capstoneModal" class="modal-backdrop">
   <div class="modal-window">
     <div class="modal-header">
-      <button class="modal-close" onclick="closeProjectModal()"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      <button class="modal-close" onclick="closeModal('capstone')"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
     </div>
     <div class="modal-content">
       <p class="modal-meta-top">PROJECT 01 · 캡스톤 디자인 · 5인 프로젝트</p>
@@ -546,11 +546,10 @@
   </div>
 </div>
 
-<!-- PLC MODAL -->
 <div id="plcModal" class="modal-backdrop">
   <div class="modal-window">
     <div class="modal-header">
-      <button class="modal-close" onclick="closePlcModal()"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      <button class="modal-close" onclick="closeModal('plc')"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
     </div>
     <div class="modal-content">
       <p class="modal-meta-top">PROJECT 02 · AI융합 로봇SW 개발자 2기 · 2인 프로젝트</p>
@@ -582,6 +581,91 @@
   </div>
 </div>
 
+<div id="mediapipeModal" class="modal-backdrop">
+  <div class="modal-window">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('mediapipe')"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+    </div>
+    <div class="modal-content">
+      <p class="modal-meta-top">PROJECT 03 · AI융합 로봇SW 개발자 2기 · 4인 프로젝트</p>
+      <h2 class="modal-title-main">MediaPipe &amp; 커스텀 DNN 제스처 인터페이스</h2>
+      <p class="modal-subtitle">컴퓨터 비전 기반 실시간 손 제스처 분류 및 이기종 디바이스 통합 제어 시스템</p>
+      <div class="modal-tags-wrap">
+        <span class="tag">Python</span><span class="tag">MediaPipe</span><span class="tag">PyTorch / DNN</span><span class="tag">BLE HID</span><span class="tag">TCP Socket</span><span class="tag">OpenCV</span>
+      </div>
+      <div class="modal-grid-2col">
+        <div class="modal-section" style="margin-bottom:0;">
+          <h3>주제 및 목표</h3>
+          <p>카메라 한 대로 인간의 손 제스처를 정밀 분석하여 PC와 하드웨어 디바이스를 실시간 제어합니다.</p>
+          <ul class="info-list" style="margin-top: 1rem;">
+            <li><strong>고정밀 분류</strong> 단순 규칙 기반을 넘어 커스텀 DNN을 이용한 다중 제스처 확립</li>
+            <li><strong>통신 다각화</strong> 블루투스를 통한 마우스 제어 및 TCP 소켓을 통한 RC카 주행 제어</li>
+          </ul>
+        </div>
+        <div class="modal-section" style="margin-bottom:0;">
+          <h3>프로젝트 개요</h3>
+          <ul class="info-list">
+            <li><strong class="label">개발 기간</strong> 2026.03.06 ~ 2026.03.20</li>
+            <li><strong class="label">팀 구성</strong> 4인 팀</li>
+            <li><strong class="label">담당 업무</strong> 제스처 인식 파이프라인 및 모델 개발</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-section">
+        <h3>Trouble Shooting: 손 흔들림 및 조명 변화로 인한 오인식 및 튐 현상</h3>
+        <div class="trouble-box">
+          <div class="trouble-step"><strong class="step-title">🔥 문제 상황</strong><p>손을 조금만 빠르게 움직이거나 음영이 생길 때 Landmark 좌표가 순간적으로 튀며 엉뚱한 명령이 실행됨.</p></div>
+          <div class="trouble-step"><strong class="step-title">🔍 원인 분석</strong><p>프레임 단위(Single-Frame) 좌표값만 즉시 딥러닝 모델의 입력으로 넣어, 시계열 노이즈 흡수력이 부족했음.</p></div>
+          <div class="trouble-step"><strong class="step-title">💡 해결 방안</strong><p>1차적으로 Landmark 좌표 벡터에 이동평균 필터(Moving Average Filter)를 적용하고, 제스처 최종 판정 단계에 윈도우 기반 큐(Queue)를 두어 연속 복수 프레임의 결과가 일치할 때만 트리거되도록 Debounce 로직 구현.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="stm32Modal" class="modal-backdrop">
+  <div class="modal-window">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('stm32')"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+    </div>
+    <div class="modal-content">
+      <p class="modal-meta-top">PROJECT 04 · 임베디드 시스템 개발 · 4인 프로젝트</p>
+      <h2 class="modal-title-main">STM32 WebSocket 기반 RC카 원격 제어</h2>
+      <p class="modal-subtitle">ESP32-STM32 이중화 아키텍처 및 WebSocket을 이용한 저지연 실시간 하드웨어 제어</p>
+      <div class="modal-tags-wrap">
+        <span class="tag">C (Bare-Metal)</span><span class="tag">STM32F411RE</span><span class="tag">ESP32</span><span class="tag">WebSocket</span><span class="tag">UART / PWM</span><span class="tag">HTML5 Canvas Dashboard</span>
+      </div>
+      <div class="modal-grid-2col">
+        <div class="modal-section" style="margin-bottom:0;">
+          <h3>주제 및 목표</h3>
+          <p>웹 대시보드 인터페이스에서 송신하는 제어 조이스틱 신호를 하드웨어 모터단까지 저지연으로 전송합니다.</p>
+          <ul class="info-list" style="margin-top: 1rem;">
+            <li><strong>역할 분담 MCU</strong> 네트워크 통신(ESP32)과 코어 모터 모션 제어(STM32)를 물리적 분리</li>
+            <li><strong>실시간성 확보</strong> HTTP 통신 대비 오버헤드가 적은 풀두플렉스 WebSocket 통신망 구축</li>
+          </ul>
+        </div>
+        <div class="modal-section" style="margin-bottom:0;">
+          <h3>프로젝트 개요</h3>
+          <ul class="info-list">
+            <li><strong class="label">개발 기간</strong> 2026.04.03 ~ 2026.04.13</li>
+            <li><strong class="label">팀 구성</strong> 4인 팀</li>
+            <li><strong class="label">담당 업무</strong> STM32 펌웨어 개발</li>
+            <li><strong class="label">GitHub</strong> <a href="https://github.com/kdm111/team2" target="_blank" style="color:var(--accent); text-decoration:none;">kdm111/team2</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-section">
+        <h3>Trouble Shooting: 대량의 웹 데이터 수신 시 STM32 데이터 유실 현상</h3>
+        <div class="trouble-box">
+          <div class="trouble-step"><strong class="step-title">🔥 문제 상황</strong><p>웹 대시보드에서 마우스를 빠르게 움직여 연속적인 좌표 패킷을 전송할 시, RC카 모터 반응이 끊기거나 멈추는 오작동 발생.</p></div>
+          <div class="trouble-step"><strong class="step-title">🔍 원인 분석</strong><p>ESP32가 수신한 패킷을 UART를 통해 STM32로 쏴줄 때, STM32가 인터럽트 방식으로만 처리하다 보니 수신 속도를 따라가지 못해 Overrun Error(ORE) 및 버퍼 오버플로우가 발생하여 데이터 유실됨.</p></div>
+          <div class="trouble-step"><strong class="step-title">💡 해결 방안</strong><p>STM32 내부 UART 수신 아키텍처를 인터럽트 방식에서 <code>DMA Circular Mode</code> 방식으로 전면 변경. 수신 버퍼링을 하드웨어 레이어에서 처리하도록 유도하고 링 버퍼(Ring Buffer) 파싱 코드를 설계하여 CPU 부하를 제거함으로써 패킷 유실률 0% 달성.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section id="contact">
   <div class="max-w">
     <div class="section-header reveal">
@@ -604,15 +688,17 @@
 
 <footer>
   <p style="margin-bottom:0.5rem; color:var(--accent); font-size:0.8rem; font-family:'Noto Serif KR',serif;">이세진</p>
-  © 2025 Lee Se-jin · Computer Engineer
+  © 2026 Lee Se-jin · Computer Engineer
 </footer>
 
 <script>
+  // Intersection Observer for scroll animation
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+  // Carousel System
   const track = document.getElementById('carouselTrack');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
@@ -622,6 +708,7 @@
   const slides = Array.from(track.querySelectorAll('.project-card'));
   const total = slides.length;
   let current = 0;
+
   counterTotal.textContent = String(total).padStart(2, '0');
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
@@ -629,6 +716,7 @@
     dot.addEventListener('click', () => goTo(i));
     dotsWrap.appendChild(dot);
   });
+
   function goTo(index) {
     current = Math.max(0, Math.min(index, total - 1));
     track.style.transform = `translateX(-${current * slides[0].offsetWidth}px)`;
@@ -641,19 +729,38 @@
   nextBtn.addEventListener('click', () => goTo(current + 1));
   window.addEventListener('resize', () => goTo(current));
 
-  const projectModal = document.getElementById('projectModal');
-  const plcModal = document.getElementById('plcModal');
-
-  function openProjectModal(projectId) {
-    if (projectId === 'capstone') { projectModal.classList.add('show'); document.body.classList.add('modal-open'); }
-    else if (projectId === 'plc') { plcModal.classList.add('show'); document.body.classList.add('modal-open'); }
+  // Unified Modal Management
+  function openModal(id) {
+    const modal = document.getElementById(`${id}Modal`);
+    if (modal) {
+      modal.classList.add('show');
+      document.body.classList.add('modal-open');
+    }
   }
-  function closeProjectModal() { projectModal.classList.remove('show'); document.body.classList.remove('modal-open'); }
-  function closePlcModal() { plcModal.classList.remove('show'); document.body.classList.remove('modal-open'); }
-  projectModal.addEventListener('click', (e) => { if (e.target === projectModal) closeProjectModal(); });
-  plcModal.addEventListener('click', (e) => { if (e.target === plcModal) closePlcModal(); });
+
+  function closeModal(id) {
+    const modal = document.getElementById(`${id}Modal`);
+    if (modal) {
+      modal.classList.remove('show');
+      document.body.classList.remove('modal-open');
+    }
+  }
+
+  // Backdrop Close & Escape key bind
+  document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) {
+        backdrop.classList.remove('show');
+        document.body.classList.remove('modal-open');
+      }
+    });
+  });
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { closeProjectModal(); closePlcModal(); }
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-backdrop').forEach(m => m.classList.remove('show'));
+      document.body.classList.remove('modal-open');
+    }
   });
 </script>
 </body>
