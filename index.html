@@ -21,9 +21,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -32,7 +30,6 @@
     overflow-x: hidden;
   }
 
-  /* ── GRAIN OVERLAY ── */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -40,7 +37,6 @@
     pointer-events: none; z-index: 9999;
   }
 
-  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -49,57 +45,26 @@
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
-  .nav-logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem; color: var(--accent);
-    letter-spacing: 0.1em;
-  }
+  .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; }
   .nav-links { display: flex; gap: 2.5rem; }
   .nav-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem; color: var(--muted);
-    text-decoration: none; letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.3s;
-    position: relative;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s; position: relative;
   }
-  .nav-links a::after {
-    content: '';
-    position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
-    background: var(--accent); transform: scaleX(0);
-    transition: transform 0.3s;
-  }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transition: transform 0.3s; }
   .nav-links a:hover { color: var(--accent); }
   .nav-links a:hover::after { transform: scaleX(1); }
 
-  /* ── HERO ── */
   #hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 8rem 3rem 4rem;
-    position: relative;
-    overflow: hidden;
+    min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 8rem 3rem 4rem; position: relative; overflow: hidden;
   }
-
-  .atom-bg {
-    position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
-    width: 700px; height: 700px; opacity: 0.04; pointer-events: none;
-  }
+  .atom-bg { position: absolute; right: -100px; top: 50%; transform: translateY(-50%); width: 700px; height: 700px; opacity: 0.04; pointer-events: none; }
   .atom-bg circle, .atom-bg ellipse { fill: none; stroke: var(--accent); }
-
   .hero-left { position: relative; z-index: 1; }
-
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent);
-    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;
-    padding: 0.35rem 0.8rem; border: 1px solid rgba(201,168,76,0.3); border-radius: 2px;
-  }
+  .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; padding: 0.35rem 0.8rem; border: 1px solid rgba(201,168,76,0.3); border-radius: 2px; }
   .hero-tag span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
-
   .hero-name { font-family: 'Noto Serif KR', serif; font-size: clamp(3.5rem, 7vw, 6.5rem); font-weight: 900; line-height: 1.05; color: var(--text); margin-bottom: 0.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
   .hero-name-en { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--muted); letter-spacing: 0.3em; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
   .hero-quote { font-size: 1rem; line-height: 1.8; color: var(--muted); border-left: 2px solid var(--accent); padding-left: 1.2rem; max-width: 420px; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
@@ -108,30 +73,23 @@
   .contact-item .label { color: var(--accent); min-width: 50px; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
   .contact-item a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
   .contact-item a:hover { color: var(--accent2); }
-
   .hero-right { display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; opacity: 0; animation: fadeIn 1s 1s forwards; }
   .photo-frame { position: relative; width: 260px; height: 320px; }
   .photo-frame::before { content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 1px solid rgba(201,168,76,0.3); border-radius: 4px; }
   .photo-frame::after { content: ''; position: absolute; top: 8px; right: -8px; width: 40%; height: 40%; background: linear-gradient(135deg, rgba(201,168,76,0.15), transparent); border-radius: 2px; }
   .photo-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--bg3), var(--bg2)); border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--border); overflow: hidden; position: relative; }
-  .photo-placeholder svg { width: 80px; height: 80px; opacity: 0.2; }
   .photo-placeholder span { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 0.5rem; letter-spacing: 0.1em; }
-
   @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
   @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
-  /* ── SECTIONS ── */
   section { padding: 6rem 3rem; }
   section:nth-child(even) { background: var(--bg2); }
-
   .section-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3.5rem; }
   .section-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; opacity: 0.7; }
   .section-title { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text); }
   .section-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border), transparent); }
-
   .max-w { max-width: 900px; margin: 0 auto; }
 
-  /* ── TIMELINE ── */
   .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
   .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 4px; border-left: 2px solid var(--accent); transition: border-color 0.3s, transform 0.3s; }
   .timeline-item:hover { border-left-color: var(--accent2); transform: translateX(4px); }
@@ -139,29 +97,75 @@
   .timeline-content-title { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
   .timeline-content-sub { font-size: 0.8rem; color: var(--muted); }
 
-  /* ── SKILLS ── */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem; }
-  .skill-item { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; transition: border-color 0.3s; }
-  .skill-item:hover { border-color: rgba(201,168,76,0.4); }
-  .skill-name { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--text); }
-  .skill-stars { display: flex; gap: 4px; }
-  .star { width: 14px; height: 14px; }
-  .star.filled path { fill: var(--accent); }
-  .star.empty path { fill: var(--border); }
-  .skill-bar-wrap { display: flex; align-items: center; gap: 1rem; flex: 1; margin: 0 1.5rem; }
-  .skill-bar { flex: 1; height: 3px; background: var(--border); border-radius: 99px; overflow: hidden; }
-  .skill-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transform-origin: left; animation: barGrow 1.2s cubic-bezier(0.25,1,0.5,1) forwards; transform: scaleX(0); }
-  @keyframes barGrow { to { transform: scaleX(1); } }
+  /* ── SKILLS TABLE ── */
+  .skills-table-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .skills-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .skills-table thead tr {
+    background: var(--bg3);
+  }
+  .skills-table thead th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+  }
+  .skills-table thead th:first-child {
+    width: 220px;
+    border-right: 1px solid var(--border);
+  }
+  .skills-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .skills-table tbody tr:last-child { border-bottom: none; }
+  .skills-table tbody tr:hover { background: rgba(201,168,76,0.03); }
+  .skills-table td {
+    padding: 1rem 1.5rem;
+    vertical-align: middle;
+  }
+  .skills-table td:first-child {
+    border-right: 1px solid var(--border);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .skills-table td:last-child {
+    text-align: center;
+  }
+  .badge-cell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .badge-cell img {
+    height: 28px;
+    display: block;
+  }
 
-  /* ── PROJECTS CAROUSEL ── */
+  /* ── PROJECTS ── */
   .carousel-wrapper { position: relative; }
   .carousel-viewport { overflow: hidden; }
   .carousel-track { display: flex; transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
-
   .project-card { min-width: 100%; max-width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; position: relative; overflow: hidden; flex-shrink: 0; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; }
   .project-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-3px); }
   .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
-
   .project-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
   .project-title { font-family: 'Noto Serif KR', serif; font-size: 1.35rem; font-weight: 900; color: var(--text); margin-bottom: 0.9rem; }
   .project-desc { font-size: 0.83rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.2rem; flex: 1; }
@@ -171,12 +175,8 @@
   .meta-title { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
   .meta-title::before { content: ''; display: inline-block; width: 1px; height: 9px; background: var(--accent); }
   .meta-body { font-size: 0.75rem; color: var(--muted); line-height: 1.8; }
-
-  /* Detail Button */
   .btn-detail { margin-top: 1.5rem; padding: 0.7rem 1.4rem; background: transparent; border: 1px solid rgba(201,168,76,0.5); color: var(--accent); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; cursor: pointer; transition: all 0.3s; align-self: flex-start; }
   .btn-detail:hover { background: rgba(201,168,76,0.1); border-color: var(--accent); transform: translateY(-2px); }
-
-  /* Controls */
   .carousel-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; }
   .carousel-arrows { display: flex; gap: 0.75rem; }
   .carousel-btn { width: 44px; height: 44px; border-radius: 4px; background: var(--card); border: 1px solid var(--border); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s; }
@@ -189,60 +189,43 @@
   .carousel-counter { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
   .carousel-counter .current { color: var(--accent); font-size: 1rem; }
 
-  /* ── MODAL ── */
   body.modal-open { overflow: hidden; }
-  
   .modal-backdrop { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(8,12,16,0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; padding: 1rem; }
   .modal-backdrop.show { display: flex; opacity: 1; }
-  
   .modal-window { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; width: 100%; max-width: 960px; max-height: 85vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s ease; box-shadow: 0 24px 48px rgba(0,0,0,0.8); }
   .modal-backdrop.show .modal-window { transform: translateY(0); }
-  
   .modal-header { position: sticky; top: 0; background: rgba(15, 20, 25, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: flex-end; z-index: 10; }
   .modal-close { background: transparent; border: none; color: var(--muted); cursor: pointer; transition: color 0.2s, transform 0.2s; padding: 0.5rem; }
   .modal-close:hover { color: var(--accent); transform: scale(1.1); }
-  
   .modal-content { padding: 0 2.5rem 3rem 2.5rem; }
-  
   .modal-meta-top { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.8rem; }
   .modal-title-main { font-family: 'Noto Serif KR', serif; font-size: 2.2rem; color: var(--text); font-weight: 900; margin-bottom: 0.5rem; }
   .modal-subtitle { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; }
-  
   .modal-tags-wrap { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
   .modal-tags-wrap .tag { padding: 0.4rem 0.8rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); background: rgba(255,255,255,0.02); }
-
   .modal-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
-  
   .modal-section { margin-bottom: 2.5rem; }
   .modal-section h3 { font-size: 1.1rem; color: var(--accent-blue); margin-bottom: 1.2rem; font-weight: 700; border-left: 3px solid var(--accent-blue); padding-left: 0.8rem; }
   .modal-section p { font-size: 0.95rem; color: #b0bbc5; line-height: 1.8; margin-bottom: 1rem; word-break: keep-all; }
-  
   .info-list { list-style: none; padding: 0; }
   .info-list li { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.6rem; position: relative; padding-left: 0.9rem; line-height: 1.7; word-break: keep-all; }
   .info-list li::before { content: '·'; color: var(--accent); font-weight: bold; position: absolute; left: 0; top: 0; }
   .info-list li strong { color: var(--text); font-weight: 500; }
   .info-list li strong.label { display: inline-block; min-width: 80px; margin-right: 0.3rem; }
-
   .feature-box { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; }
   .feature-box h4 { font-size: 1rem; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
   .feature-box p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.8rem; }
   .feature-box p:last-child { margin-bottom: 0; }
-  
   code { background: rgba(201,168,76,0.1); padding: 0.1rem 0.3rem; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent2); margin: 0 0.1rem; white-space: normal; }
-
   .trouble-box { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2); border-left: 4px solid var(--accent); border-radius: 4px; padding: 1.5rem; margin-bottom: 1.5rem; }
   .trouble-box h4 { font-size: 0.95rem; color: var(--text); margin-bottom: 1.2rem; }
   .trouble-step { margin-bottom: 1rem; }
   .trouble-step strong.step-title { display: block; font-size: 0.8rem; color: var(--accent); margin-bottom: 0.3rem; letter-spacing: 0.05em; font-weight: 700; }
   .trouble-step p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin: 0; }
-
-  /* Table styles for modal */
   .modal-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.82rem; }
   .modal-table th { background: var(--bg3); color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.7rem 1rem; text-align: left; border: 1px solid var(--border); }
   .modal-table td { padding: 0.65rem 1rem; border: 1px solid var(--border); color: var(--muted); line-height: 1.6; }
   .modal-table tr:hover td { background: rgba(201,168,76,0.03); }
-
-  /* ── SITE LINKS ── */
   .site-cards { display: flex; gap: 1rem; flex-wrap: wrap; }
   .site-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1.2rem 1.5rem; text-decoration: none; transition: border-color 0.3s, transform 0.3s; display: flex; align-items: center; gap: 1rem; }
   .site-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); }
@@ -250,7 +233,6 @@
   .site-card-icon svg { width: 18px; height: 18px; }
   .site-card-label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text); display: block; margin-bottom: 0.2rem; }
   .site-card-sub { font-size: 0.7rem; color: var(--muted); }
-
   footer { text-align: center; padding: 3rem; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
@@ -264,12 +246,14 @@
     .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
     .modal-content { padding: 0 1.5rem 2rem 1.5rem; }
     .modal-grid-2col { grid-template-columns: 1fr; gap: 1.5rem; }
+    .skills-table td:first-child { font-size: 0.72rem; padding: 0.8rem 0.8rem; }
+    .skills-table td:last-child { padding: 0.8rem 0.8rem; }
+    .badge-cell img { height: 22px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">LSJ.DEV</div>
   <div class="nav-links">
@@ -281,7 +265,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="about">
   <div id="hero" style="padding-left: max(3rem, calc(50% - 420px)); padding-right: 3rem;">
     <div class="hero-left">
@@ -309,7 +292,7 @@
     <div class="hero-right">
       <div class="photo-frame">
         <div class="photo-placeholder">
-            <img src="./images/profile.jpg" alt="이세진 프로필 사진" style="width: 100%; height: 100%; object-fit: cover;">
+          <img src="./images/profile.jpg" alt="이세진 프로필 사진" style="width: 100%; height: 100%; object-fit: cover;">
           <span>이세진</span>
         </div>
       </div>
@@ -318,7 +301,6 @@
   </div>
 </section>
 
-<!-- EDUCATION -->
 <section id="education">
   <div class="max-w">
     <div class="section-header reveal">
@@ -337,6 +319,7 @@
         <div class="reveal" style="margin-bottom:2rem;">
           <p style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1.2rem;">📋 Certifications</p>
           <div class="timeline">
+            <div class="timeline-item"><span class="timeline-date">2026.06.12</span><div><p class="timeline-content-title">정보처리기사</p></div></div>
             <div class="timeline-item"><span class="timeline-date">2025.09.25</span><div><p class="timeline-content-title">컴퓨터활용능력 1급</p></div></div>
             <div class="timeline-item"><span class="timeline-date">2024.08.13</span><div><p class="timeline-content-title">JLPT N2</p><p class="timeline-content-sub">일본어능력시험</p></div></div>
           </div>
@@ -360,12 +343,83 @@
       <h2 class="section-title">Skills</h2>
       <div class="section-line"></div>
     </div>
-    <div class="skills-grid reveal">
-      <div class="skill-item"><span class="skill-name">C</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:40%; animation-delay:0.1s;"></div></div></div><div class="skill-stars"><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg><svg class="star empty" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg></div></div>
-      <div class="skill-item"><span class="skill-name">Java</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:40%; animation-delay:0.2s;"></div></div></div><div class="skill-stars"><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg><svg class="star empty" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg></div></div>
-      <div class="skill-item"><span class="skill-name">C++</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:60%; animation-delay:0.3s;"></div></div></div><div class="skill-stars"><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg></div></div>
-      <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:40%; animation-delay:0.4s;"></div></div></div><div class="skill-stars"><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg><svg class="star empty" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg></div></div>
-      <div class="skill-item"><span class="skill-name">Ladder (PLC)</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:60%; animation-delay:0.5s;"></div></div></div><div class="skill-stars"><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg><svg class="star filled" viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5z"/></svg></div></div>
+    <div class="skills-table-wrap reveal">
+      <table class="skills-table">
+        <thead>
+          <tr>
+            <th>카테고리</th>
+            <th>기술 스택</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>💻 프로그래밍 언어</td>
+            <td><div class="badge-cell">
+              <img src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white" alt="C">
+              <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++">
+              <img src="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white" alt="C#">
+              <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java">
+              <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python">
+            </div></td>
+          </tr>
+          <tr>
+            <td>🗄️ 데이터베이스</td>
+            <td><div class="badge-cell">
+              <img src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+              <img src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite">
+            </div></td>
+          </tr>
+          <tr>
+            <td>🌐 웹 백엔드 프레임워크</td>
+            <td><div class="badge-cell">
+              <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="FastAPI">
+              <img src="https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white" alt="Flask">
+            </div></td>
+          </tr>
+          <tr>
+            <td>🦾 로보틱스</td>
+            <td><div class="badge-cell">
+              <img src="https://img.shields.io/badge/ROS2-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white" alt="ROS2">
+            </div></td>
+          </tr>
+          <tr>
+            <td>🔧 임베디드 / 하드웨어</td>
+            <td><div class="badge-cell">
+              <img src="https://img.shields.io/badge/PLC-%23007ACC.svg?style=for-the-badge&logoColor=white" alt="PLC">
+              <img src="https://img.shields.io/badge/-Raspberry_Pi-C51A4A?style=for-the-badge&logo=Raspberry-Pi" alt="Raspberry Pi">
+              <img src="https://img.shields.io/badge/STM32-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white" alt="STM32">
+            </div></td>
+          </tr>
+          <tr>
+            <td>🤖 AI / 딥러닝</td>
+            <td><div class="badge-cell">
+              <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow">
+              <img src="https://img.shields.io/badge/PyTorch-EE4C2C.svg?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch">
+              <img src="https://img.shields.io/badge/ultralytics-%23111F68.svg?style=for-the-badge&logo=ultralytics&logoColor=white" alt="Ultralytics">
+              <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn">
+            </div></td>
+          </tr>
+          <tr>
+            <td>👁️ 컴퓨터 비전</td>
+            <td><div class="badge-cell">
+              <img src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV">
+            </div></td>
+          </tr>
+          <tr>
+            <td>📊 데이터 분석</td>
+            <td><div class="badge-cell">
+              <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" alt="Matplotlib">
+              <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
+            </div></td>
+          </tr>
+          <tr>
+            <td>🎮 게임 엔진</td>
+            <td><div class="badge-cell">
+              <img src="https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white" alt="Unity">
+            </div></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -378,20 +432,15 @@
       <h2 class="section-title">Projects</h2>
       <div class="section-line"></div>
     </div>
-
     <div class="carousel-wrapper reveal">
       <div class="carousel-viewport">
         <div class="carousel-track" id="carouselTrack">
-
-          <!-- SLIDE 1: 캡스톤 디자인 -->
           <div class="project-card">
             <span class="project-tag">🎓 대학교 졸업작품 · 캡스톤 디자인</span>
             <h3 class="project-title">원자의 세계 속으로</h3>
             <p class="project-highlight">"교과서 속 평면적인 원자가 당신의 눈앞에서 살아 움직입니다."</p>
             <p class="project-desc">몰입형 VR 기술을 통해 보이지 않는 원자와 분자의 구조를 가상 공간에 구현한 디지털 교육 콘텐츠 프로젝트입니다. 단순한 관찰을 넘어, 사용자가 직접 원자를 만지고 결합하며 화학의 원리를 체득할 수 있습니다.</p>
-            
             <button class="btn-detail" onclick="openProjectModal('capstone')">상세보기 및 트러블슈팅 보러가기 →</button>
-            
             <div class="project-meta" style="margin-top: 2rem;">
               <div class="meta-block">
                 <p class="meta-title">Information</p>
@@ -399,16 +448,12 @@
               </div>
             </div>
           </div>
-
-          <!-- SLIDE 2: PLC 미니 프로젝트 -->
           <div class="project-card">
             <span class="project-tag">⚙️ AI융합 로봇SW 개발자 2기 · 미니 PLC 프로젝트</span>
             <h3 class="project-title">PLC 미니 프로젝트</h3>
             <p class="project-highlight">이론으로만 접했던 PLC의 점접과 데이터 제어를 실제 공정 흐름에 녹여내며, '재질별 3단 적재'라는 정밀 자동 제어와 큐(Queue)를 활용한 유연한 수동 제어를 하나의 유기적인 논리로 통합하였습니다.</p>
             <p class="project-desc">소재의 부재, 창고의 적재 상태, 사용자의 다중 명령 예약 등 실제 산업 현장에서 마주할 수 있는 시나리오를 논리적으로 해결해 나가는 과정을 담았습니다.</p>
-
             <button class="btn-detail" onclick="openProjectModal('plc')">상세보기 및 트러블슈팅 보러가기 →</button>
-
             <div class="project-meta" style="margin-top: 2rem;">
               <div class="meta-block">
                 <p class="meta-title">Information</p>
@@ -416,8 +461,6 @@
               </div>
             </div>
           </div>
-
-          <!-- SLIDE 3: MediaPipe DNN -->
           <div class="project-card">
             <span class="project-tag">🤖 AI융합 로봇SW 개발자 2기 · Python Project</span>
             <h3 class="project-title">MediaPipe &amp; 커스텀 DNN 제스처 인터페이스</h3>
@@ -430,8 +473,6 @@
               </div>
             </div>
           </div>
-
-          <!-- SLIDE 4: STM32 RC카 -->
           <div class="project-card">
             <span class="project-tag">🚗 임베디드 시스템 개발 프로젝트</span>
             <h3 class="project-title">STM32 WebSocket 기반 RC카 원격 제어 시스템</h3>
@@ -444,10 +485,8 @@
               </div>
             </div>
           </div>
-
-        </div><!-- /track -->
-      </div><!-- /viewport -->
-
+        </div>
+      </div>
       <div class="carousel-controls">
         <div class="carousel-arrows">
           <button class="carousel-btn" id="prevBtn" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
@@ -460,41 +499,29 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     CAPSTONE MODAL
-═══════════════════════════════════════════════ -->
+<!-- CAPSTONE MODAL -->
 <div id="projectModal" class="modal-backdrop">
   <div class="modal-window">
     <div class="modal-header">
-      <button class="modal-close" onclick="closeProjectModal()" aria-label="닫기">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
+      <button class="modal-close" onclick="closeProjectModal()"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
     </div>
-    
     <div class="modal-content">
       <p class="modal-meta-top">PROJECT 01 · 캡스톤 디자인 · 5인 프로젝트</p>
       <h2 class="modal-title-main">원자의 세계 속으로</h2>
       <p class="modal-subtitle">몰입형 VR 기술을 활용한 디지털 화학 교육 콘텐츠</p>
-      
       <div class="modal-tags-wrap">
-        <span class="tag">C# (Scripting)</span>
-        <span class="tag">Unity 2022.3.42f1 (LTS)</span>
-        <span class="tag">Meta XR All-in-One SDK</span>
-        <span class="tag">Visual Studio 2022</span>
-        <span class="tag">Meta Quest 2 / 3</span>
+        <span class="tag">C# (Scripting)</span><span class="tag">Unity 2022.3.42f1 (LTS)</span><span class="tag">Meta XR All-in-One SDK</span><span class="tag">Visual Studio 2022</span><span class="tag">Meta Quest 2 / 3</span>
       </div>
-
       <div class="modal-grid-2col">
         <div class="modal-section" style="margin-bottom:0;">
           <h3>주제 및 목표</h3>
-          <p>교과서 속 평면적인 원자를 가상 공간(VR)에 구현하여 학습자의 직관적 이해를 돕습니다. 보이지 않는 미시 세계를 직접 손으로 다루는 체험형 시나리오를 통해 화학에 대한 흥미를 유발하는 것이 목표입니다.</p>
+          <p>교과서 속 평면적인 원자를 가상 공간(VR)에 구현하여 학습자의 직관적 이해를 돕습니다.</p>
           <ul class="info-list" style="margin-top: 1rem;">
             <li><strong>몰입형 환경</strong> 실감형 3D 학습 환경 구축</li>
             <li><strong>상호작용 극대화</strong> 컨트롤러가 없는 Hand Tracking 최적화</li>
             <li><strong>체험형 시나리오</strong> 직접 원자를 만지고 결합하는 경험 제공</li>
           </ul>
         </div>
-        
         <div class="modal-section" style="margin-bottom:0;">
           <h3>프로젝트 개요</h3>
           <ul class="info-list">
@@ -505,287 +532,55 @@
           </ul>
         </div>
       </div>
-
-      <div class="modal-section">
-        <h3>핵심 시스템 및 알고리즘 구현</h3>
-        
-        <div class="feature-box">
-          <h4>1. 복합 조건 논리 연산을 활용한 제스처 인식 시스템</h4>
-          <p>의도치 않은 시스템 오작동을 막기 위해 다중 조건을 감지하도록 설계했습니다.</p>
-          <ul class="info-list">
-            <li><code>ShapeRecognizer</code>를 통해 다섯 손가락이 모두 굽혀진(Closed) '주먹' 형태를 수동적으로 정의합니다.</li>
-            <li><code>TransformRecognizer</code>를 이용해 손바닥이 얼굴을 향하는지(Towards Face), 손가락이 위를 향하는지(Fingers Up)의 방향성을 판별합니다.</li>
-            <li>위 조건들을 <code>Active State Group</code>의 <strong>AND 논리 연산</strong>으로 묶어, 두 조건이 완벽히 만족할 때만 <code>Selector Unity Event Wrapper</code>를 통해 주기율표 UI 호출(Spawn) 이벤트를 트리거합니다.</li>
-          </ul>
-        </div>
-
-        <div class="feature-box">
-          <h4>2. 물리 기반 직관적 상호작용 (Grab & Poke)</h4>
-          <p>기존 레이저 포인터 방식(Ray Interaction)이 주는 물리적 이질감을 없애기 위해 사용자의 손을 가상 세계에 직접 투영했습니다.</p>
-          <ul class="info-list">
-            <li><strong>Grab:</strong> 원자를 직접 손으로 쥐고 옮길 수 있는 파지 인터랙션을 활성화하여 높은 몰입감을 제공합니다.</li>
-            <li><strong>Poke:</strong> Meta SDK의 Poke Interaction을 도입하여 가상 버튼에 물리적 깊이감을 부여하고, 실제 스위치를 찌르는 듯한 본능적인 조작법을 구현했습니다.</li>
-          </ul>
-        </div>
-
-        <div class="feature-box">
-          <h4>3. 분자 결합 판정 알고리즘</h4>
-          <p>원자 간의 결합 과정을 실시간으로 추적하고 동적으로 시각화합니다.</p>
-          <ul class="info-list">
-            <li><code>OnTriggerEnter/Exit</code>를 통해 결합 보드(제작판) 위의 원자 개수를 실시간으로 카운팅합니다.</li>
-            <li>필요한 Target Name과 충돌 객체의 Tag를 1:1로 검사하여 엉뚱한 결합을 방지합니다.</li>
-            <li>결합 판정 시, 현재 위치(FromObj)에서 중심점(ToObj)까지의 <strong>방향 벡터(Direction Vector)</strong>를 산출 후 정규화(<code>normalized</code>)하여, Update 루프에서 원자들이 자연스럽게 모여드는 결합 애니메이션을 수학적으로 구현했습니다.</li>
-          </ul>
-        </div>
-      </div>
-
       <div class="modal-section">
         <h3>Trouble Shooting: 다중 객체 인식 시 UI 중복 출력 문제</h3>
-        
         <div class="trouble-box">
-          <div class="trouble-step">
-            <strong class="step-title">🔥 문제 상황 (Problem)</strong>
-            <p>초기 설계에서는 <code>if</code> 조건문과 count 변수를 활용하여 한 번에 하나의 정보창만 띄우도록 했습니다. 하지만 실제 환경에서 여러 원자가 센서(결합대)에 동시에 진입할 경우, <strong>UI 캔버스가 겹쳐서 중복 출력</strong>되는 버그가 발생했습니다.</p>
-          </div>
-          
-          <div class="trouble-step">
-            <strong class="step-title">🔍 원인 분석 (Cause)</strong>
-            <p>프레임 단위의 연산 속도 때문이었습니다. 두 원자가 거의 동시에 진입하면, count 변수가 업데이트되어 if문 조건이 막히기 전에 <strong>동일한 프레임 내에서 두 원자의 <code>OnCollisionEnter</code> 이벤트가 순차적으로 모두 실행</strong>되면서 방어 로직이 뚫렸습니다.</p>
-          </div>
-
-          <div class="trouble-step">
-            <strong class="step-title">💡 해결 방안 (Solution)</strong>
-            <p>단순 제어문으로는 찰나의 동시 입력을 막을 수 없다고 판단하여 <strong>큐(Queue) 자료 구조 기반의 대기열 시스템</strong>을 구축했습니다.</p>
-            <ul class="info-list" style="margin-top: 0.5rem;">
-              <li>신호가 오면 즉시 UI를 만들지 않고 모두 <code>Queue&lt;string&gt;</code>에 <code>Enqueue</code>합니다.</li>
-              <li>시스템은 큐의 맨 앞 값(<code>Peek</code>)만 확인하여 순차적으로 화면에 하나씩 출력합니다.</li>
-              <li><code>Dictionary&lt;string, GameObject&gt;</code>를 활용하여 원자가 영역을 벗어나면 대기열과 딕셔너리에서 즉각 제거하여 런타임 성능 최적화 및 중복 생성을 원천 차단했습니다.</li>
-            </ul>
-          </div>
-
-          <div class="trouble-step" style="margin-top:1.5rem; padding-top:1rem; border-top:1px dashed rgba(201,168,76,0.3);">
-            <strong class="step-title">✨ 회고 (Reflection)</strong>
-            <p>명령어의 논리가 완벽해 보여도, 시스템 프레임 주기 내의 신호 중첩이 로직의 결함을 만들 수 있음을 배웠습니다. 복잡한 인터랙션 환경에서는 <strong>단순 조건문보다 자료 구조를 활용한 명확한 데이터 흐름 제어</strong>가 훨씬 효율적이고 안정적임을 깨달았습니다.</p>
-          </div>
+          <div class="trouble-step"><strong class="step-title">🔥 문제 상황</strong><p>여러 원자가 센서에 동시 진입 시 UI 캔버스가 겹쳐 중복 출력되는 버그 발생.</p></div>
+          <div class="trouble-step"><strong class="step-title">🔍 원인 분석</strong><p>동일 프레임 내에서 두 원자의 OnCollisionEnter 이벤트가 순차 실행되어 방어 로직이 뚫렸습니다.</p></div>
+          <div class="trouble-step"><strong class="step-title">💡 해결 방안</strong><p>Queue&lt;string&gt; 기반 대기열 시스템을 구축, Dictionary로 중복 생성을 원천 차단.</p></div>
+          <div class="trouble-step" style="margin-top:1.2rem; padding-top:1rem; border-top:1px dashed rgba(201,168,76,0.3);"><strong class="step-title">✨ 회고</strong><p>단순 조건문보다 자료 구조를 활용한 명확한 데이터 흐름 제어가 훨씬 안정적임을 깨달았습니다.</p></div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PLC MODAL
-═══════════════════════════════════════════════ -->
+<!-- PLC MODAL -->
 <div id="plcModal" class="modal-backdrop">
   <div class="modal-window">
     <div class="modal-header">
-      <button class="modal-close" onclick="closePlcModal()" aria-label="닫기">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
+      <button class="modal-close" onclick="closePlcModal()"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
     </div>
-
     <div class="modal-content">
-      <!-- Header -->
       <p class="modal-meta-top">PROJECT 02 · AI융합 로봇SW 개발자 2기 · 2인 프로젝트</p>
       <h2 class="modal-title-main">PLC 미니 프로젝트</h2>
       <p class="modal-subtitle">PLC 기반 자동화 공정의 위치 결정 제어 로직 설계 및 HMI 모니터링 구현</p>
-
       <div class="modal-tags-wrap">
-        <span class="tag">LADDER (PLC)</span>
-        <span class="tag">GX Works2</span>
-        <span class="tag">GT Designer3</span>
-        <span class="tag">PLC CPU Q03UDV</span>
-        <span class="tag">QD77MS2</span>
-        <span class="tag">SSCNET Ⅲ/H</span>
-        <span class="tag">Ethernet</span>
+        <span class="tag">LADDER (PLC)</span><span class="tag">GX Works2</span><span class="tag">GT Designer3</span><span class="tag">PLC CPU Q03UDV</span><span class="tag">QD77MS2</span>
       </div>
-
-      <!-- 2열 그리드: 주제 / 개요 -->
       <div class="modal-grid-2col">
         <div class="modal-section" style="margin-bottom:0;">
           <h3>주제 및 목표</h3>
-          <p>단순한 동작을 넘어 원점 복귀, JOG 운전, 위치 데이터 전송 등 현장에서 필수적인 서보 제어 시나리오를 직접 설계하고, PC(HMI/GX Works)와의 통신을 통해 시스템을 구축합니다.</p>
           <ul class="info-list" style="margin-top:1rem;">
             <li><strong>관리자 로그인</strong> HMI-PLC 데이터 연동으로 비인가자 조작 방지</li>
-            <li><strong>자동제어 및 서보 활용</strong> 재질 판별 + 고정밀 위치 제어로 정확한 분류·적재</li>
-            <li><strong>수동제어 및 Queue 활용</strong> FIFO 방식 선입선출 공정 제어</li>
-            <li><strong>비상정지 및 재기동</strong> 정지 지점 기억(Retentive) 로직으로 공정 연속성 보장</li>
+            <li><strong>자동제어</strong> 재질 판별 + 고정밀 위치 제어</li>
+            <li><strong>수동제어</strong> FIFO 방식 선입선출 공정 제어</li>
+            <li><strong>비상정지 및 재기동</strong> 정지 지점 기억 로직으로 공정 연속성 보장</li>
           </ul>
         </div>
-
         <div class="modal-section" style="margin-bottom:0;">
           <h3>프로젝트 개요</h3>
           <ul class="info-list">
             <li><strong class="label">개발 기간</strong> 2026.02.04 ~ 2026.02.06</li>
-            <li><strong class="label">팀 구성</strong> 2인 팀 (협업)</li>
+            <li><strong class="label">팀 구성</strong> 2인 팀</li>
             <li><strong class="label">담당 업무</strong> 로그인 및 수동 제어 개발</li>
           </ul>
-          <p style="margin-top:1rem; font-size:0.8rem; color:var(--muted); line-height:1.7;">
-            <strong style="color:var(--text);">시퀀스 제어의 구조화</strong> — 자동과 수동 모드를 하나의 유기적 시스템으로 통합.<br>
-            <strong style="color:var(--text);">사용자 편의성</strong> — HMI를 통해 최대 4개 연속 명령 예약 가능.
-          </p>
         </div>
       </div>
-
-      <!-- 개발 환경 -->
-      <div class="modal-section">
-        <h3>개발 환경</h3>
-        <div class="feature-box">
-          <h4>Hardware / Network 구성</h4>
-          <p>PLC CPU(Q03UDV), 위치결정 모듈(QD77MS2), 통신(PC연결: Ethernet / 서보제어: SSCNET Ⅲ/H)</p>
-          <table class="modal-table" style="margin-top:0.8rem;">
-            <thead><tr><th>장치명</th><th>IP 주소</th></tr></thead>
-            <tbody>
-              <tr><td>PC</td><td>192.168.3.39</td></tr>
-              <tr><td>PLC</td><td>192.168.3.41</td></tr>
-              <tr><td>서보모듈</td><td>192.168.3.42</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="feature-box" style="margin-top:1rem;">
-          <h4>Memory Map 구성</h4>
-          <ul class="info-list">
-            <li><code>M/D 0 ~ 999</code> 공통 영역 (초기화, 버튼 등)</li>
-            <li><code>M/D 1000 ~ 1999</code> 자동 제어 영역</li>
-            <li><code>M/D 2000 ~ 2999</code> 로그인 영역</li>
-            <li><code>M/D 3000 ~ 3999</code> 수동 제어 영역</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 핵심 알고리즘 -->
-      <div class="modal-section">
-        <h3>핵심 알고리즘 구현</h3>
-
-        <div class="feature-box">
-          <h4>A. 키패드 및 비밀번호 로직</h4>
-          <p><strong style="color:var(--text);">비밀번호 등록 및 입력:</strong> <code>D2000</code>(설정 번호)과 <code>D2002</code>(입력 번호)를 사용하여 숫자를 입력받습니다. 사용자가 숫자를 누를 때마다 <code>+P</code> 명령과 <code>K10</code> 곱셈 알고리즘으로 자릿수를 밀어내며 숫자를 누적합니다.</p>
-          <p style="background:rgba(201,168,76,0.06); border-radius:4px; padding:0.6rem 0.8rem; font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--accent2);">누적값 = (기존값 × 10) + 신규 입력값</p>
-          <p style="margin-top:0.8rem;"><strong style="color:var(--text);">일치 판별:</strong> <code>M2200</code> 접점을 통해 설정된 번호와 입력된 번호를 비교하여 로그인을 처리하고 화면(<code>D2100</code>)을 전환합니다.</p>
-        </div>
-
-        <div class="feature-box">
-          <h4>B. 창고 적재 및 큐(Queue) 관리 로직</h4>
-          <p><strong style="color:var(--text);">큐 알고리즘:</strong> 사용자가 선택한 창고 번호를 순서대로 처리하기 위해 <code>D3009</code> 레지스터에 큐 값을 저장합니다. <code>/P</code>(나눗셈)와 <code>MOVP</code>(이동) 명령으로 첫 번째 순서(<code>D3011</code>), 두 번째 순서(<code>D3012</code>) 등을 분리하는 데이터 시프트 알고리즘이 적용됩니다.</p>
-          <p><strong style="color:var(--text);">적재/배출 판단:</strong> <code>D3000</code>에 큐에서 받은 창고가 비어있으면 짝수, 비어있지 않으면 홀수를 저장하여 적재와 배출을 결정합니다. 적재 시 <code>M3101~M3106</code> 릴레이와 <code>SET</code> 함수로 적재 상태를 관리합니다.</p>
-        </div>
-
-        <div class="feature-box">
-          <h4>C. 자동 운전 및 소재 분류</h4>
-          <ul class="info-list">
-            <li><strong>재질 판별:</strong> <code>X11</code>(용량형센서), <code>X12</code>(유도형센서)로 금속/비금속을 구분하며 각각의 카운트(<code>D1007</code>, <code>D1008</code>)를 수행합니다.</li>
-            <li>금속은 1·3·5번 창고, 비금속은 2·4·6번 창고에 순서대로 적재됩니다.</li>
-            <li><strong>서보 위치 제어 (<code>ZP.PSTRT1</code>):</strong> <code>D2</code> 레지스터에 목적지 번호를 입력하고 명령을 실행하여 서보 축을 정밀하게 이동시킵니다.</li>
-            <li>핵심 기동 번호: 원점 복귀(<code>K9001</code>), 흡착 위치 이동, 창고별 위치 이동(K2·K4·K6 등).</li>
-          </ul>
-        </div>
-
-        <div class="feature-box">
-          <h4>D. 비상 정지 및 재기동 제어</h4>
-          <ul class="info-list">
-            <li><strong>비상 정지 (EMG):</strong> 비상 스위치(<code>X16</code>)가 눌리면 <code>M1100</code> 비트가 ON되어 모든 출력(<code>Y</code>)을 즉시 차단합니다.</li>
-            <li><strong>상태 유지:</strong> 비상 정지 시에도 현재 진행 단계(Step)와 큐 데이터는 레지스터에 그대로 유지됩니다.</li>
-            <li><strong>재기동 로직 (<code>X17</code>):</strong> 재기동 버튼을 누르면 <code>M1170</code>과 <code>M1009</code> 등의 상태 비트를 확인 후, <code>ZP.PSTRT1</code>이 중단된 지점부터 작업을 이어서 실행합니다.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 서보모터 파라미터 -->
-      <div class="modal-section">
-        <h3>서보모터 파라미터 설정</h3>
-        <table class="modal-table">
-          <thead>
-            <tr><th>항목</th><th>설정값</th><th>용도 설명</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Speed Limit</td><td>3,000 mm/min</td><td>모터 최대 구동 속도 제한</td></tr>
-            <tr><td>Jog Speed Limit</td><td>1,000 mm/min</td><td>수동 JOG 조작 시 허용 최대 속도</td></tr>
-            <tr><td>HPR Speed</td><td>1,000 mm/min</td><td>원점 복귀(Home Position Return) 이동 속도</td></tr>
-            <tr><td>Creep Speed</td><td>100 mm/min</td><td>원점 근접 시 정밀 정지를 위한 저속</td></tr>
-            <tr><td>Acceleration Time</td><td>500 ms</td><td>정속까지 가속하는 데 걸리는 시간</td></tr>
-            <tr><td>Deceleration Time</td><td>500 ms</td><td>정지까지 감속하는 데 걸리는 시간</td></tr>
-          </tbody>
-        </table>
-        <p style="font-size:0.83rem; color:var(--muted); line-height:1.7; margin-top:0.5rem;">
-          Creep Speed(100mm/min)로 원점에 정밀 정지하며, 엔코더 피드백으로 실시간 오차를 자동 보정합니다. JOG 모드는 전체 속도의 1/3 수준으로 제한하여 수동 조작 사고를 예방합니다.
-        </p>
-      </div>
-
-      <!-- 트러블슈팅 -->
-      <div class="modal-section">
-        <h3>Trouble Shooting</h3>
-
-        <!-- TS 1 -->
-        <div class="trouble-box">
-          <h4>① 수동 연속 배출 로직의 신호 간섭 문제</h4>
-
-          <div class="trouble-step">
-            <strong class="step-title">🔥 문제 상황 (Problem)</strong>
-            <p>수동 제어 모드에서 '연속 적재'는 정상 작동하였으나, <strong>'연속 배출'</strong> 공정 시 로직이 꼬이거나 명령이 중첩되는 현상이 발생하였습니다.</p>
-          </div>
-
-          <div class="trouble-step">
-            <strong class="step-title">🔍 원인 분석 (Cause)</strong>
-            <p>배출 코드가 한 사이클 종료된 후, 관련 릴레이가 완전히 차단되기 직전에 다음 배출 명령이 중첩 실행되었습니다. 이전 사이클의 <code>ZP.PSTRT1</code> 완료 신호가 미처 소멸되지 않은 상태에서 다음 로직이 이를 새로운 완료 신호로 오인한 것이 원인이었습니다.</p>
-          </div>
-
-          <div class="trouble-step">
-            <strong class="step-title">💡 해결 방안 (Solution)</strong>
-            <p>물리적 동작 완료와 로직상 신호 처리 사이의 시간적 간격을 확보하기 위해 <strong>지연 타이머(Delay Timer)</strong>를 도입했습니다. 배출 로직이 끝나는 시점에 <strong>2초간의 대기 타이머(T)</strong>를 추가하여 릴레이가 확실히 차단되고 신호가 초기화될 충분한 시간을 확보하였습니다.</p>
-          </div>
-
-          <div class="trouble-step" style="margin-top:1.2rem; padding-top:1rem; border-top:1px dashed rgba(201,168,76,0.3);">
-            <strong class="step-title">✨ 회고 (Reflection)</strong>
-            <p>명령어의 논리가 맞더라도 하드웨어의 응답 속도와 스캔 타임에 따른 신호의 간섭(Overlap)이 발생할 수 있습니다. 완벽한 시퀀스 설계를 위해서는 각 공정 사이에 적절한 <strong>인터록(Interlock)과 타이밍 설계</strong>가 필수적임을 깨달았습니다.</p>
-          </div>
-        </div>
-
-        <!-- TS 2 -->
-        <div class="trouble-box">
-          <h4>② 큐 데이터 연쇄 소모 문제 (동일 번호 연속 입력)</h4>
-
-          <div class="trouble-step">
-            <strong class="step-title">🔥 문제 상황 (Problem)</strong>
-            <p>서로 다른 창고 번호를 큐에 입력할 때는 정상 동작하나, <strong>동일한 창고 번호를 연속 입력(예: 3→3)</strong>할 경우, 첫 번째 작업이 끝나고 큐의 데이터가 한꺼번에 소모(pop)되는 현상이 발생하였습니다.</p>
-          </div>
-
-          <div class="trouble-step">
-            <strong class="step-title">🔍 원인 분석 (Cause)</strong>
-            <p>PLC Ladder의 <strong>하향식 스캔(Top-to-Bottom)</strong> 특성상, 적재 종료와 동시에 배출 로직이 활성화될 때 <strong>스캔 타임(ms)</strong>과 <strong>서보 구동 시간(sec)</strong> 사이의 미세한 시차가 발생합니다. 이 찰나에 물리 장치가 반응하기 전, 하단의 큐 시프트 로직이 먼저 실행 조건을 충족하여 데이터를 앞당긴 것으로 추정됩니다. <code>CJ</code> 명령의 유지 조건과 시퀀스 리셋 타이밍의 불일치가 유력한 원인이었습니다.</p>
-          </div>
-
-          <div class="trouble-step">
-            <strong class="step-title">💡 해결 방안 (Solution)</strong>
-            <p><code>CJ</code> 함수의 실행 조건을 <strong>시작 릴레이의 상태와 직접 동기화</strong>하도록 수정했습니다. 시작 릴레이가 끊기는 즉시 <code>CJ</code> 명령도 비활성화되어, 의도치 않은 한 클럭의 로직 진입을 원천 차단했습니다. 이를 통해 동일한 숫자가 연속되어도 큐가 하나씩 정확히 소모됨을 확인하였습니다.</p>
-          </div>
-
-          <div class="trouble-step" style="margin-top:1.2rem; padding-top:1rem; border-top:1px dashed rgba(201,168,76,0.3);">
-            <strong class="step-title">✨ 회고 (Reflection)</strong>
-            <p><code>CJ</code>와 같은 점프 명령을 사용할 때는 단순 실행 조건뿐 아니라, 시스템 리셋 시 해당 명령이 해제되는 <strong>타이밍까지 고려</strong>해야 합니다. 특히 물리적 장치(서보)와 논리적 데이터(큐) 사이의 <strong>강력한 인터록(Interlock) 설계</strong>가 시스템 신뢰성을 결정짓는 핵심임을 깨달았습니다.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 안전 설계 -->
-      <div class="modal-section">
-        <h3>안전 설계</h3>
-        <div class="feature-box">
-          <h4>비상정지 회로 (Hardware Limit Sensor)</h4>
-          <p>FLS·RLS 센서는 <strong>B접점(NC)</strong>으로 구성됩니다. B접점은 평소에 전류가 흐르다가 스위치가 눌리거나 <strong>선이 끊어지면(단선) 신호가 차단</strong>됩니다. A접점을 쓰면 단선 시 비상 상황에서도 시스템이 인지하지 못해 사고가 날 수 있으므로, 선이 끊어져도 안전하게 멈추기 위해 B접점을 채택하였습니다.</p>
-        </div>
-        <div class="feature-box" style="margin-top:1rem;">
-          <h4>InterLock 회로 (작업 데이터 보호)</h4>
-          <p>수동 모드 운전 시 사용자의 실수로 인한 리셋 버튼 조작이 발생하더라도, <strong>작업 데이터(Queue)가 소실되지 않도록</strong> 물리적·논리적 인터락을 설정하였습니다.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
 
-<!-- CONTACT / SITE -->
 <section id="contact">
   <div class="max-w">
     <div class="section-header reveal">
@@ -812,21 +607,11 @@
 </footer>
 
 <script>
-  // ── Scroll reveal ──
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  document.querySelectorAll('.timeline').forEach(tl => {
-    tl.querySelectorAll('.timeline-item').forEach((item, i) => {
-      item.style.transitionDelay = `${i * 0.1}s`;
-    });
-  });
-
-  // ── Carousel ──
   const track = document.getElementById('carouselTrack');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
@@ -836,77 +621,38 @@
   const slides = Array.from(track.querySelectorAll('.project-card'));
   const total = slides.length;
   let current = 0;
-
   counterTotal.textContent = String(total).padStart(2, '0');
-
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
     dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', `프로젝트 ${i + 1}`);
     dot.addEventListener('click', () => goTo(i));
     dotsWrap.appendChild(dot);
   });
-
   function goTo(index) {
     current = Math.max(0, Math.min(index, total - 1));
-    const cardW = slides[0].offsetWidth;
-    track.style.transform = `translateX(-${current * cardW}px)`;
+    track.style.transform = `translateX(-${current * slides[0].offsetWidth}px)`;
     counterCurrent.textContent = String(current + 1).padStart(2, '0');
     prevBtn.disabled = current === 0;
     nextBtn.disabled = current === total - 1;
     dotsWrap.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
   }
-
   prevBtn.addEventListener('click', () => goTo(current - 1));
   nextBtn.addEventListener('click', () => goTo(current + 1));
   window.addEventListener('resize', () => goTo(current));
 
-  // ── Capstone Modal ──
   const projectModal = document.getElementById('projectModal');
-
-  function openProjectModal(projectId) {
-    if (projectId === 'capstone') {
-      projectModal.classList.add('show');
-      document.body.classList.add('modal-open');
-    }
-  }
-
-  function closeProjectModal() {
-    projectModal.classList.remove('show');
-    document.body.classList.remove('modal-open');
-  }
-
-  projectModal.addEventListener('click', (e) => {
-    if (e.target === projectModal) closeProjectModal();
-  });
-
-  // ── PLC Modal ──
   const plcModal = document.getElementById('plcModal');
 
   function openProjectModal(projectId) {
-    if (projectId === 'capstone') {
-      projectModal.classList.add('show');
-      document.body.classList.add('modal-open');
-    } else if (projectId === 'plc') {
-      plcModal.classList.add('show');
-      document.body.classList.add('modal-open');
-    }
+    if (projectId === 'capstone') { projectModal.classList.add('show'); document.body.classList.add('modal-open'); }
+    else if (projectId === 'plc') { plcModal.classList.add('show'); document.body.classList.add('modal-open'); }
   }
-
-  function closePlcModal() {
-    plcModal.classList.remove('show');
-    document.body.classList.remove('modal-open');
-  }
-
-  plcModal.addEventListener('click', (e) => {
-    if (e.target === plcModal) closePlcModal();
-  });
-
+  function closeProjectModal() { projectModal.classList.remove('show'); document.body.classList.remove('modal-open'); }
+  function closePlcModal() { plcModal.classList.remove('show'); document.body.classList.remove('modal-open'); }
+  projectModal.addEventListener('click', (e) => { if (e.target === projectModal) closeProjectModal(); });
+  plcModal.addEventListener('click', (e) => { if (e.target === plcModal) closePlcModal(); });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (projectModal.classList.contains('show')) closeProjectModal();
-      if (plcModal.classList.contains('show')) closePlcModal();
-    }
+    if (e.key === 'Escape') { closeProjectModal(); closePlcModal(); }
   });
 </script>
 </body>
