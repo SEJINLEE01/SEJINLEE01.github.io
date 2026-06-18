@@ -8,16 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght=300;400;500;700;900&family=Noto+Serif+KR:wght=600;900&family=JetBrains+Mono:wght=300;400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #080c10;
-    --bg2: #0f1419;
-    --bg3: #151d26;
-    --accent: #c9a84c;
-    --accent2: #e8c96a;
-    --accent-blue: #6699ff;
-    --text: #e8e4dc;
-    --muted: #7a8694;
-    --border: #1e2a36;
-    --card: #111820;
+    --bg: #f7f8fc;
+    --bg2: #eef0f7;
+    --bg3: #e5e8f2;
+    --accent: #4a6cf7;
+    --accent2: #7c9aff;
+    --accent-blue: #3b5bdb;
+    --text: #1a1d2e;
+    --muted: #6b7280;
+    --border: #d1d9e6;
+    --card: #ffffff;
+    /* project tag colors */
+    --tag-python: #3b82f6;
+    --tag-eda: #10b981;
+    --tag-modeling: #8b5cf6;
+    --tag-viz: #f59e0b;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,7 +46,7 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.2rem 3rem;
-    background: rgba(8,12,16,0.85);
+    background: rgba(247,248,252,0.92);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
@@ -159,42 +164,122 @@
     display: block;
   }
 
-  /* ── PROJECTS ── */
-  .carousel-wrapper { position: relative; }
-  .carousel-viewport { overflow: hidden; }
-  .carousel-track { display: flex; transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
-  .project-card { min-width: 100%; max-width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; position: relative; overflow: hidden; flex-shrink: 0; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; }
-  .project-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-3px); }
-  .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
-  .project-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
-  .project-title { font-family: 'Noto Serif KR', serif; font-size: 1.35rem; font-weight: 900; color: var(--text); margin-bottom: 0.9rem; }
-  .project-desc { font-size: 0.83rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.2rem; flex: 1; }
-  .project-highlight { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15); border-radius: 4px; padding: 0.7rem 0.9rem; font-size: 0.8rem; font-style: italic; color: var(--accent2); margin-bottom: 1.2rem; line-height: 1.7; }
-  .project-meta { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; }
-  .meta-block { background: var(--bg3); border-radius: 4px; padding: 0.85rem; border: 1px solid var(--border); }
-  .meta-title { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
-  .meta-title::before { content: ''; display: inline-block; width: 1px; height: 9px; background: var(--accent); }
-  .meta-body { font-size: 0.75rem; color: var(--muted); line-height: 1.8; }
-  .btn-detail { margin-top: 1.5rem; padding: 0.7rem 1.4rem; background: transparent; border: 1px solid rgba(201,168,76,0.5); color: var(--accent); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; cursor: pointer; transition: all 0.3s; align-self: flex-start; }
-  .btn-detail:hover { background: rgba(201,168,76,0.1); border-color: var(--accent); transform: translateY(-2px); }
-  .carousel-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; }
-  .carousel-arrows { display: flex; gap: 0.75rem; }
-  .carousel-btn { width: 44px; height: 44px; border-radius: 4px; background: var(--card); border: 1px solid var(--border); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s; }
-  .carousel-btn:hover:not(:disabled) { background: var(--bg3); border-color: rgba(201,168,76,0.4); color: var(--accent); transform: scale(1.05); }
-  .carousel-btn:disabled { opacity: 0.3; cursor: default; }
-  .carousel-btn svg { width: 18px; height: 18px; }
-  .carousel-dots { display: flex; gap: 0.5rem; align-items: center; }
-  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background 0.3s, width 0.3s; border: none; }
-  .dot.active { background: var(--accent); width: 20px; border-radius: 3px; }
-  .carousel-counter { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
-  .carousel-counter .current { color: var(--accent); font-size: 1rem; }
+  /* ── PROJECTS TIMELINE ── */
+  .project-list { display: flex; flex-direction: column; gap: 0; }
+  .project-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 1.4rem 0;
+    transition: background 0.2s;
+  }
+  .project-row:first-child { border-top: 1px solid var(--border); }
+  .project-row:hover { background: rgba(74,108,247,0.03); }
+  .project-left {
+    padding-right: 1.5rem;
+    padding-top: 0.15rem;
+  }
+  .project-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .project-stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.4rem;
+  }
+  .stack-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    padding: 0.18rem 0.5rem;
+    border-radius: 99px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .stack-dot::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; }
+  .stack-dot.python { background: #eff6ff; color: #1d4ed8; } .stack-dot.python::before { background: #3b82f6; }
+  .stack-dot.sql { background: #fdf4ff; color: #7e22ce; } .stack-dot.sql::before { background: #a855f7; }
+  .stack-dot.eda { background: #f0fdf4; color: #15803d; } .stack-dot.eda::before { background: #22c55e; }
+  .stack-dot.modeling { background: #fff7ed; color: #c2410c; } .stack-dot.modeling::before { background: #f97316; }
+  .stack-dot.viz { background: #fefce8; color: #a16207; } .stack-dot.viz::before { background: #eab308; }
+  .stack-dot.unity { background: #f1f5f9; color: #334155; } .stack-dot.unity::before { background: #64748b; }
+  .stack-dot.csharp { background: #f0fdf4; color: #166534; } .stack-dot.csharp::before { background: #16a34a; }
+  .stack-dot.python-ai { background: #fdf4ff; color: #86198f; } .stack-dot.python-ai::before { background: #c026d3; }
+  .stack-dot.embedded { background: #eff6ff; color: #1e40af; } .stack-dot.embedded::before { background: #2563eb; }
+  .stack-dot.plc { background: #fff1f2; color: #9f1239; } .stack-dot.plc::before { background: #e11d48; }
+
+  .project-right { padding-left: 0; }
+  .project-context {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+    display: block;
+  }
+  .project-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+  .project-bullets {
+    list-style: none; padding: 0; margin-bottom: 0.6rem;
+  }
+  .project-bullets li {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.7;
+    padding-left: 0.85rem;
+    position: relative;
+    word-break: keep-all;
+  }
+  .project-bullets li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+  .project-links { display: flex; gap: 0.75rem; margin-top: 0.6rem; flex-wrap: wrap; }
+  .project-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid rgba(74,108,247,0.3);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .project-link:hover { color: var(--accent2); border-bottom-color: var(--accent2); }
+  .project-link-detail {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid rgba(107,114,128,0.3);
+    transition: color 0.2s;
+  }
+  .project-link-detail:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
   body.modal-open { overflow: hidden; }
-  .modal-backdrop { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(8,12,16,0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; padding: 1rem; }
+  .modal-backdrop { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(247,248,252,0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; padding: 1rem; }
   .modal-backdrop.show { display: flex; opacity: 1; }
   .modal-window { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; width: 100%; max-width: 960px; max-height: 85vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s ease; box-shadow: 0 24px 48px rgba(0,0,0,0.8); }
   .modal-backdrop.show .modal-window { transform: translateY(0); }
-  .modal-header { position: sticky; top: 0; background: rgba(15, 20, 25, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: flex-end; z-index: 10; }
+  .modal-header { position: sticky; top: 0; background: rgba(247, 248, 252, 0.97); backdrop-filter: blur(10px); padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: flex-end; z-index: 10; }
   .modal-close { background: transparent; border: none; color: var(--muted); cursor: pointer; transition: color 0.2s, transform 0.2s; padding: 0.5rem; }
   .modal-close:hover { color: var(--accent); transform: scale(1.1); }
   .modal-content { padding: 0 2.5rem 3rem 2.5rem; }
@@ -246,7 +331,8 @@
     .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
     .modal-content { padding: 0 1.5rem 2rem 1.5rem; }
     .modal-grid-2col { grid-template-columns: 1fr; gap: 1.5rem; }
-    .skills-table td:first-child { font-size: 0.72rem; padding: 0.8rem 0.8rem; }
+    .project-row { grid-template-columns: 1fr; gap: 0.4rem; }
+    .project-left { padding-right: 0; padding-bottom: 0.2rem; }
     .skills-table td:last-child { padding: 0.8rem 0.8rem; }
     .badge-cell img { height: 22px; }
   }
@@ -312,6 +398,7 @@
       <div class="reveal">
         <p style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1.2rem;">📚 Education</p>
         <div class="timeline">
+          <div class="timeline-item"><span class="timeline-date">2017.03 — 2020.02</span><div><p class="timeline-content-title">양평고등학교</p><p class="timeline-content-sub">졸업</p></div></div>
           <div class="timeline-item"><span class="timeline-date">2020.03 — 2026.02</span><div><p class="timeline-content-title">한성대학교</p><p class="timeline-content-sub">컴퓨터공학과 졸업</p></div></div>
         </div>
       </div>
@@ -430,69 +517,96 @@
       <h2 class="section-title">Projects</h2>
       <div class="section-line"></div>
     </div>
-    <div class="carousel-wrapper reveal">
-      <div class="carousel-viewport">
-        <div class="carousel-track" id="carouselTrack">
-          <div class="project-card">
-            <span class="project-tag">🎓 대학교 졸업작품 · 캡스톤 디자인</span>
-            <h3 class="project-title">원자의 세계 속으로</h3>
-            <p class="project-highlight">"교과서 속 평면적인 원자가 당신의 눈앞에서 살아 움직입니다."</p>
-            <p class="project-desc">몰입형 VR 기술을 통해 보이지 않는 원자와 분자의 구조를 가상 공간에 구현한 디지털 교육 콘텐츠 프로젝트입니다. 사용자가 직접 원자를 만지고 결합하며 화학의 원리를 체득할 수 있습니다.</p>
-            <button class="btn-detail" onclick="openProjectModal('capstone')">상세보기 및 트러블슈팅 보러가기 →</button>
-            <div class="project-meta" style="margin-top: 2rem;">
-              <div class="meta-block">
-                <p class="meta-title">Information</p>
-                <p class="meta-body">개발 기간: 2025/01/08 — 2025/05/28<br>팀 구성: 5인<br>담당 업무: 개발 총괄, HandTracking 개발</p>
-              </div>
-            </div>
+    <div class="project-list reveal">
+
+      <!-- Project 1 -->
+      <div class="project-row">
+        <div class="project-left">
+          <span class="project-date">2025.01 — 2025.05</span>
+          <div class="project-stack-tags">
+            <span class="stack-dot unity">Unity</span>
+            <span class="stack-dot csharp">C#</span>
           </div>
-          <div class="project-card">
-            <span class="project-tag">⚙️ AI융합 로봇SW 개발자 2기 · 미니 PLC 프로젝트</span>
-            <h3 class="project-title">PLC 미니 프로젝트</h3>
-            <p class="project-highlight">이론으로만 접했던 PLC의 점접과 데이터 제어를 실제 공정 흐름에 녹여내며, '재질별 3단 적재'라는 정밀 자동 제어와 큐(Queue)를 활용한 유연한 수동 제어를 하나의 유기적인 논리로 통합하였습니다.</p>
-            <p class="project-desc">소재의 부재, 창고의 적재 상태, 사용자의 다중 명령 예약 등 실제 산업 현장에서 마주할 수 있는 시나리오를 논리적으로 해결해 나가는 과정을 담았습니다.</p>
-            <button class="btn-detail" onclick="openProjectModal('plc')">상세보기 및 트러블슈팅 보러가기 →</button>
-            <div class="project-meta" style="margin-top: 2rem;">
-              <div class="meta-block">
-                <p class="meta-title">Information</p>
-                <p class="meta-body">개발 기간: 2026/02/04 — 2026/02/06<br>팀 구성: 2인<br>담당 업무: 로그인 및 수동 제어 개발</p>
-              </div>
-            </div>
-          </div>
-          <div class="project-card">
-            <span class="project-tag">🤖 AI융합 로봇SW 개발자 2기 · Python Project</span>
-            <h3 class="project-title">MediaPipe &amp; 커스텀 DNN 제스처 인터페이스</h3>
-            <p class="project-highlight">하나의 제스처 인식 엔진으로 PC 응용체제(마우스/키보드)와 RC카라는 이질적인 두 시스템을 통합 제어하는 데 성공했습니다.</p>
-            <p class="project-desc">MediaPipe Hand Landmark와 커스텀 DNN을 결합하여 손 제스처를 실시간으로 분류하고, BLE HID와 TCP 소켓이라는 서로 다른 통신 프로토콜로 각 디바이스를 제어하는 통합 파이프라인을 구축했습니다.</p>
-            <div class="project-meta">
-              <div class="meta-block">
-                <p class="meta-title">Information</p>
-                <p class="meta-body">개발 기간: 2026/03/06 — 2026/03/20<br>팀 구성: 4인<br>담당 업무: 제스처 인식 파이프라인 및 모델 개발</p>
-              </div>
-            </div>
-          </div>
-          <div class="project-card">
-            <span class="project-tag">🚗 임베디드 시스템 개발 프로젝트</span>
-            <h3 class="project-title">STM32 WebSocket 기반 RC카 원격 제어 시스템</h3>
-            <p class="project-highlight">WebSocket 프로토콜을 활용하여 웹 환경에서 저지연 실시간 RC카 원격 제어 시스템을 구현했습니다.</p>
-            <p class="project-desc">ESP32와 STM32F411RE의 이중화 MCU 아키텍처를 통해 통신과 제어 로직을 분리하여, 웹 대시보드에서의 입력이 하드웨어까지 안정적으로 전달되는 엔드투엔드 시스템을 완성했습니다.</p>
-            <div class="project-meta">
-              <div class="meta-block">
-                <p class="meta-title">Information</p>
-                <p class="meta-body">개발 기간: 2026/04/03 — 2026/04/13<br>팀 구성: 4인<br>담당 업무: STM32 펌웨어 개발<br>GitHub: <a href="https://github.com/kdm111/team2" target="_blank" style="color:var(--accent); text-decoration:none;">kdm111/team2</a></p>
-              </div>
-            </div>
+        </div>
+        <div class="project-right">
+          <span class="project-context">🎓 캡스톤 디자인 · 5인 팀</span>
+          <p class="project-name">원자의 세계 속으로</p>
+          <ul class="project-bullets">
+            <li>몰입형 VR 기술로 원자·분자 구조를 가상 공간에 구현한 디지털 화학 교육 콘텐츠</li>
+            <li>Meta Quest Hand Tracking 최적화, 컨트롤러 없이 손으로 직접 원자를 결합하는 체험 제공</li>
+            <li>Queue&lt;string&gt; 기반 대기열 + Dictionary 중복 차단으로 다중 객체 UI 충돌 문제 해결</li>
+          </ul>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/SEJINLEE01/Capstone" target="_blank">↗ GitHub</a>
+            <button class="project-link-detail" onclick="openProjectModal('capstone')">상세보기 →</button>
           </div>
         </div>
       </div>
-      <div class="carousel-controls">
-        <div class="carousel-arrows">
-          <button class="carousel-btn" id="prevBtn" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <button class="carousel-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+
+      <!-- Project 2 -->
+      <div class="project-row">
+        <div class="project-left">
+          <span class="project-date">2026.02.04 — 2026.02.06</span>
+          <div class="project-stack-tags">
+            <span class="stack-dot plc">PLC</span>
+          </div>
         </div>
-        <div class="carousel-dots" id="carouselDots"></div>
-        <div class="carousel-counter"><span class="current" id="counterCurrent">01</span><span style="color:var(--border);">/</span><span id="counterTotal">04</span></div>
+        <div class="project-right">
+          <span class="project-context">⚙️ AI융합 로봇SW 2기 · 2인 팀</span>
+          <p class="project-name">PLC 미니 프로젝트</p>
+          <ul class="project-bullets">
+            <li>LADDER 로직으로 재질 판별 + 고정밀 위치 결정 자동 제어 및 HMI 모니터링 구현</li>
+            <li>FIFO Queue 기반 수동 제어, 비상정지 후 정지 지점 기억으로 공정 연속성 보장</li>
+            <li>HMI–PLC 데이터 연동 관리자 로그인으로 비인가자 조작 방지</li>
+          </ul>
+          <div class="project-links">
+            <button class="project-link-detail" onclick="openProjectModal('plc')">상세보기 →</button>
+          </div>
+        </div>
       </div>
+
+      <!-- Project 3 -->
+      <div class="project-row">
+        <div class="project-left">
+          <span class="project-date">2026.03.06 — 2026.03.20</span>
+          <div class="project-stack-tags">
+            <span class="stack-dot python-ai">Python</span>
+            <span class="stack-dot modeling">DNN</span>
+          </div>
+        </div>
+        <div class="project-right">
+          <span class="project-context">🤖 AI융합 로봇SW 2기 · 4인 팀</span>
+          <p class="project-name">MediaPipe &amp; 커스텀 DNN 제스처 인터페이스</p>
+          <ul class="project-bullets">
+            <li>MediaPipe Hand Landmark + 커스텀 DNN으로 손 제스처를 실시간 분류하는 통합 파이프라인 구축</li>
+            <li>BLE HID(PC 마우스·키보드)와 TCP 소켓(RC카)을 단일 제스처 엔진으로 이중 제어</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-row">
+        <div class="project-left">
+          <span class="project-date">2026.04.03 — 2026.04.13</span>
+          <div class="project-stack-tags">
+            <span class="stack-dot embedded">STM32</span>
+            <span class="stack-dot embedded">ESP32</span>
+          </div>
+        </div>
+        <div class="project-right">
+          <span class="project-context">🚗 임베디드 시스템 · 4인 팀</span>
+          <p class="project-name">STM32 WebSocket 기반 RC카 원격 제어 시스템</p>
+          <ul class="project-bullets">
+            <li>ESP32(통신) + STM32F411RE(제어) 이중화 MCU 아키텍처로 저지연 실시간 제어 달성</li>
+            <li>WebSocket 프로토콜로 웹 대시보드 → 하드웨어 엔드투엔드 파이프라인 완성</li>
+            <li>담당: STM32 펌웨어 개발</li>
+          </ul>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/kdm111/team2" target="_blank">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -607,34 +721,6 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  const track = document.getElementById('carouselTrack');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsWrap = document.getElementById('carouselDots');
-  const counterCurrent = document.getElementById('counterCurrent');
-  const counterTotal = document.getElementById('counterTotal');
-  const slides = Array.from(track.querySelectorAll('.project-card'));
-  const total = slides.length;
-  let current = 0;
-  counterTotal.textContent = String(total).padStart(2, '0');
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(dot);
-  });
-  function goTo(index) {
-    current = Math.max(0, Math.min(index, total - 1));
-    track.style.transform = `translateX(-${current * slides[0].offsetWidth}px)`;
-    counterCurrent.textContent = String(current + 1).padStart(2, '0');
-    prevBtn.disabled = current === 0;
-    nextBtn.disabled = current === total - 1;
-    dotsWrap.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
-  }
-  prevBtn.addEventListener('click', () => goTo(current - 1));
-  nextBtn.addEventListener('click', () => goTo(current + 1));
-  window.addEventListener('resize', () => goTo(current));
 
   const projectModal = document.getElementById('projectModal');
   const plcModal = document.getElementById('plcModal');
