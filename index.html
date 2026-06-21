@@ -26,7 +26,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; font-size: 19px; }
   body {
     background: var(--bg);
     color: var(--text);
@@ -75,11 +75,11 @@
   .hero-quote { font-size: 1rem; line-height: 1.8; color: var(--muted); border-left: 2px solid var(--accent); padding-left: 1.2rem; max-width: 420px; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
   .hero-contacts { display: flex; flex-direction: column; gap: 0.6rem; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
   .contact-item { display: flex; align-items: center; gap: 0.8rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted); }
-  .contact-item .label { color: var(--accent); min-width: 50px; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .contact-item .label { color: var(--accent); min-width: 58px; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
   .contact-item a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
   .contact-item a:hover { color: var(--accent2); }
   .hero-right { display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; opacity: 0; animation: fadeIn 1s 1s forwards; }
-  .photo-frame { position: relative; width: 260px; height: 320px; }
+  .photo-frame { position: relative; width: 300px; height: 370px; }
   .photo-frame::before { content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 1px solid rgba(201,168,76,0.3); border-radius: 4px; }
   .photo-frame::after { content: ''; position: absolute; top: 8px; right: -8px; width: 40%; height: 40%; background: linear-gradient(135deg, rgba(201,168,76,0.15), transparent); border-radius: 2px; }
   .photo-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--bg3), var(--bg2)); border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--border); overflow: hidden; position: relative; }
@@ -93,10 +93,10 @@
   .section-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; opacity: 0.7; }
   .section-title { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text); }
   .section-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border), transparent); }
-  .max-w { max-width: 900px; margin: 0 auto; }
+  .max-w { max-width: 960px; margin: 0 auto; }
 
   .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
-  .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 4px; border-left: 2px solid var(--accent); transition: border-color 0.3s, transform 0.3s; }
+  .timeline-item { display: grid; grid-template-columns: 200px 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 4px; border-left: 2px solid var(--accent); transition: border-color 0.3s, transform 0.3s; }
   .timeline-item:hover { border-left-color: var(--accent2); transform: translateX(4px); }
   .timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.05em; padding-top: 2px; }
   .timeline-content-title { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
@@ -128,7 +128,7 @@
     font-weight: 400;
   }
   .skills-table thead th:first-child {
-    width: 220px;
+    width: 250px;
     border-right: 1px solid var(--border);
   }
   .skills-table tbody tr {
@@ -160,7 +160,7 @@
     align-items: center;
   }
   .badge-cell img {
-    height: 28px;
+    height: 34px;
     display: block;
   }
 
@@ -168,7 +168,7 @@
   .project-list { display: flex; flex-direction: column; gap: 0; }
   .project-row {
     display: grid;
-    grid-template-columns: 160px 1fr;
+    grid-template-columns: 185px 1fr;
     gap: 0;
     border-bottom: 1px solid var(--border);
     padding: 1.4rem 0;
@@ -277,7 +277,7 @@
   body.modal-open { overflow: hidden; }
   .modal-backdrop { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(247,248,252,0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; padding: 1rem; }
   .modal-backdrop.show { display: flex; opacity: 1; }
-  .modal-window { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; width: 100%; max-width: 960px; max-height: 85vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s ease; box-shadow: 0 24px 48px rgba(0,0,0,0.8); }
+  .modal-window { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; width: 100%; max-width: 1040px; max-height: 85vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s ease; box-shadow: 0 24px 48px rgba(0,0,0,0.8); }
   .modal-backdrop.show .modal-window { transform: translateY(0); }
   .modal-header { position: sticky; top: 0; background: rgba(247, 248, 252, 0.97); backdrop-filter: blur(10px); padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: flex-end; z-index: 10; }
   .modal-close { background: transparent; border: none; color: var(--muted); cursor: pointer; transition: color 0.2s, transform 0.2s; padding: 0.5rem; }
@@ -334,7 +334,7 @@
     .project-row { grid-template-columns: 1fr; gap: 0.4rem; }
     .project-left { padding-right: 0; padding-bottom: 0.2rem; }
     .skills-table td:last-child { padding: 0.8rem 0.8rem; }
-    .badge-cell img { height: 22px; }
+    .badge-cell img { height: 26px; }
   }
 </style>
 </head>
@@ -352,7 +352,7 @@
 </nav>
 
 <section id="about">
-  <div id="hero" style="padding-left: max(3rem, calc(50% - 420px)); padding-right: 3rem;">
+  <div id="hero" style="padding-left: max(3rem, calc(50% - 460px)); padding-right: 3rem;">
     <div class="hero-left">
       <div class="hero-tag"><span></span> Computer Engineer</div>
       <h1 class="hero-name">이세진</h1>
