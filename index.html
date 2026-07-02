@@ -560,6 +560,7 @@
             <li>HMI–PLC 데이터 연동 관리자 로그인으로 비인가자 조작 방지</li>
           </ul>
           <div class="project-links">
+            <a class="project-link" href="https://thorn-laundry-e55.notion.site/PLC-301488643952800ba652ecf1b3077c99?pvs=74" target="_blank">↗ Notion</a>
             <button class="project-link-detail" onclick="openProjectModal('plc')">상세보기 →</button>
           </div>
         </div>
@@ -581,6 +582,10 @@
             <li>MediaPipe Hand Landmark + 커스텀 DNN으로 손 제스처를 실시간 분류하는 통합 파이프라인 구축</li>
             <li>BLE HID(PC 마우스·키보드)와 TCP 소켓(RC카)을 단일 제스처 엔진으로 이중 제어</li>
           </ul>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/kdm111/GCC" target="_blank">↗ GitHub</a>
+            <button class="project-link-detail" onclick="openProjectModal('gcc')">상세보기 →</button>
+          </div>
         </div>
       </div>
 
@@ -603,6 +608,7 @@
           </ul>
           <div class="project-links">
             <a class="project-link" href="https://github.com/kdm111/team2" target="_blank">↗ GitHub</a>
+            <button class="project-link-detail" onclick="openProjectModal('stm32')">상세보기 →</button>
           </div>
         </div>
       </div>
@@ -614,7 +620,7 @@
 <div id="projectModal" class="modal-backdrop">
   <div class="modal-window">
     <div class="modal-header">
-      <button class="modal-close" onclick="closeProjectModal()"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      <button class="modal-close" onclick="closeAllModals()"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
     </div>
     <div class="modal-content">
       <p class="modal-meta-top">PROJECT 01 · 캡스톤 디자인 · 5인 프로젝트</p>
@@ -656,35 +662,293 @@
   </div>
 </div>
 
+<!-- ═══════════ PLC MODAL (보강) ═══════════ -->
 <div id="plcModal" class="modal-backdrop">
   <div class="modal-window">
     <div class="modal-header">
-      <button class="modal-close" onclick="closePlcModal()"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      <button class="modal-close" onclick="closeAllModals()"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
     </div>
     <div class="modal-content">
       <p class="modal-meta-top">PROJECT 02 · AI융합 로봇SW 개발자 2기 · 2인 프로젝트</p>
       <h2 class="modal-title-main">PLC 미니 프로젝트</h2>
       <p class="modal-subtitle">PLC 기반 자동화 공정의 위치 결정 제어 로직 설계 및 HMI 모니터링 구현</p>
       <div class="modal-tags-wrap">
-        <span class="tag">LADDER (PLC)</span><span class="tag">GX Works2</span><span class="tag">GT Designer3</span><span class="tag">PLC CPU Q03UDV</span><span class="tag">QD77MS2</span>
+        <span class="tag">LADDER (PLC)</span><span class="tag">GX Works2</span><span class="tag">GT Designer3</span><span class="tag">PLC CPU Q03UDV</span><span class="tag">QD77MS2</span><span class="tag">SSCNET Ⅲ/H</span>
       </div>
       <div class="modal-grid-2col">
         <div class="modal-section" style="margin-bottom:0;">
           <h3>주제 및 목표</h3>
+          <p>단순 동작을 넘어 원점 복귀, JOG 운전, 위치 데이터 전송 등 현장 필수 서보 제어 시나리오를 직접 설계하고, PC(HMI/GX Works)와의 통신으로 시스템을 구축했습니다.</p>
           <ul class="info-list" style="margin-top:1rem;">
             <li><strong>관리자 로그인</strong> HMI-PLC 데이터 연동으로 비인가자 조작 방지</li>
-            <li><strong>자동제어</strong> 재질 판별 + 고정밀 위치 제어</li>
-            <li><strong>수동제어</strong> FIFO 방식 선입선출 공정 제어</li>
-            <li><strong>비상정지 및 재기동</strong> 정지 지점 기억 로직으로 공정 연속성 보장</li>
+            <li><strong>자동제어</strong> 재질 판별(금속/비금속) + 고정밀 위치 제어</li>
+            <li><strong>수동제어</strong> Queue(FIFO) 선입선출 공정 제어</li>
+            <li><strong>비상정지·재기동</strong> 정지 지점 기억(Retentive) 로직으로 공정 연속성 보장</li>
           </ul>
         </div>
         <div class="modal-section" style="margin-bottom:0;">
           <h3>프로젝트 개요</h3>
           <ul class="info-list">
             <li><strong class="label">개발 기간</strong> 2026.02.04 ~ 2026.02.06</li>
-            <li><strong class="label">팀 구성</strong> 2인 팀</li>
+            <li><strong class="label">팀 구성</strong> 2인 팀 (협업)</li>
             <li><strong class="label">담당 업무</strong> 로그인 및 수동 제어 개발</li>
+            <li><strong class="label">HardWare</strong> PLC CPU(Q03UDV), 위치결정 모듈(QD77MS2)</li>
+            <li><strong class="label">Notion</strong> <a href="https://thorn-laundry-e55.notion.site/PLC-301488643952800ba652ecf1b3077c99?pvs=74" target="_blank" style="color:var(--accent); text-decoration:none;">프로젝트 상세 페이지 ↗</a></li>
           </ul>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>핵심 알고리즘</h3>
+        <div class="feature-box">
+          <h4>⚙️ 서보 기동 명령 <code>ZP.PSTRT1</code></h4>
+          <p>미쓰비시 위치결정 모듈(QD77MS)을 제어하는 서보 기동 전용 명령으로, 특정 기동 번호를 서보 모듈에 전달하여 사전 설정된 위치로 축을 이동시킵니다. 원점 복귀(K9001), 창고 위치별 이동, 흡착 및 내리기 동작 등 정밀 위치 제어에 반복 사용됩니다.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🔑 키패드 · 비밀번호 로직</h4>
+          <p><code>D2000</code>(설정 번호)과 <code>D2002</code>(입력 번호)로 숫자를 입력받으며, 숫자 입력 시마다 <code>(기존값 × 10) + 신규값</code> 방식으로 자릿수를 누적합니다. <code>M2200</code> 접점으로 설정 번호와 입력 번호를 비교해 로그인을 처리하고 화면을 전환합니다.</p>
+        </div>
+        <div class="feature-box">
+          <h4>📦 창고 적재 · 큐(Queue) 관리</h4>
+          <p>선택한 창고 번호를 순서대로 처리하기 위해 <code>D3009</code> 레지스터에 큐 값을 저장하고, <code>/P</code>(나눗셈)·<code>MOVP</code>(이동) 명령으로 순번을 분리하는 데이터 시프트 알고리즘을 적용했습니다. 창고가 비어있으면 짝수, 아니면 홀수를 받아 적재/배출을 판단합니다.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🔩 자동 운전 · 소재 분류</h4>
+          <p><code>X11</code>(용량형 센서)·<code>X12</code>(유도형 센서)로 금속/비금속을 구분하고 카운트하여, 금속은 1·3·5번 창고, 비금속은 2·4·6번 창고에 순차 적재하도록 설계했습니다.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🛑 비상 정지 · 재기동</h4>
+          <p>비상 스위치(<code>X16</code>)가 눌리면 모든 출력(Y)을 즉시 차단하되, 진행 중이던 Step과 큐 데이터는 초기화하지 않고 유지합니다. 재기동 버튼(<code>X17</code>)을 누르면 멈췄던 위치에서 기동 번호를 다시 받아 처음부터 다시 시작할 필요 없이 작업을 이어갑니다.</p>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>서보 파라미터 설정</h3>
+        <table class="modal-table">
+          <thead><tr><th>항목</th><th>설정값</th><th>용도</th></tr></thead>
+          <tbody>
+            <tr><td>Speed Limit</td><td>3,000 mm/min</td><td>최대 구동 속도 제한</td></tr>
+            <tr><td>Jog Speed Limit</td><td>1,000 mm/min</td><td>수동(JOG) 조작 최대 속도</td></tr>
+            <tr><td>HPR Speed</td><td>1,000 mm/min</td><td>원점 복귀 이동 속도</td></tr>
+            <tr><td>Creep Speed</td><td>100 mm/min</td><td>원점 근접 후 정밀 정지 저속</td></tr>
+            <tr><td>Acc / Dec Time</td><td>500 ms</td><td>가감속 완충 시간 (충격 방지)</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">1,000mm/min으로 접근하다 정지 직전 Creep 100mm/min으로 낮춰 관성 오차 없이 매번 동일 위치에 정지하며, 서보앰프가 엔코더 피드백으로 위치를 실시간 보정합니다.</p>
+      </div>
+
+      <div class="modal-section">
+        <h3>Trouble Shooting ①: 수동 연속 배출 로직의 간섭 문제</h3>
+        <div class="trouble-box">
+          <div class="trouble-step"><strong class="step-title">🔥 문제 상황</strong><p>수동 '연속 적재'는 정상 작동했으나, '연속 배출' 공정 시 로직이 꼬이거나 명령이 중첩되는 현상 발생.</p></div>
+          <div class="trouble-step"><strong class="step-title">🔍 원인 분석</strong><p>배출 한 사이클 종료 후 릴레이가 완전히 차단되기 직전에 다음 배출 명령이 중첩되어, 이전 사이클의 가동 완료 신호(ZP.PSTRT1)를 새 완료 신호로 오인하여 시퀀스가 꼬였습니다.</p></div>
+          <div class="trouble-step"><strong class="step-title">💡 해결 방안</strong><p>배출 로직 종료 시점에 2초 지연 타이머(T)를 추가하여, 릴레이가 확실히 차단되고 신호가 초기화될 시간을 확보해 신호 중첩을 완전히 해결.</p></div>
+          <div class="trouble-step" style="margin-top:1.2rem; padding-top:1rem; border-top:1px dashed rgba(201,168,76,0.3);"><strong class="step-title">✨ 회고</strong><p>명령 논리가 맞더라도 하드웨어 응답 속도와 스캔 타임에 따른 신호 간섭(Overlap)이 발생할 수 있음을 배웠고, 인터록과 타이밍 설계의 필요성을 깊이 체감했습니다.</p></div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>Trouble Shooting ②: 큐 데이터 연쇄 소모 문제</h3>
+        <div class="trouble-box">
+          <div class="trouble-step"><strong class="step-title">🔥 문제 상황</strong><p>서로 다른 창고 번호 입력은 정상 동작하나, 동일 창고 번호를 연속 입력(예: 3-3)하면 첫 작업 후 큐 데이터가 한꺼번에 소모(pop)되는 현상 발생.</p></div>
+          <div class="trouble-step"><strong class="step-title">🔍 원인 분석</strong><p>PLC Ladder의 하향식 스캔 특성상 스캔 타임(ms)과 서보 구동 시간(sec) 사이 시차로 인해, 물리 장치가 반응하기 전 하단의 큐 시프트 로직이 먼저 실행되어 <code>CJ</code> 명령 유지 조건과 리셋 타이밍이 불일치.</p></div>
+          <div class="trouble-step"><strong class="step-title">💡 해결 방안</strong><p><code>CJ</code> 함수 실행 조건을 시작 릴레이 상태와 직접 동기화하여, 시작 릴레이가 끊기는 즉시 CJ도 비활성화되도록 수정. 의도치 않은 한 클럭의 로직 진입을 원천 차단.</p></div>
+          <div class="trouble-step" style="margin-top:1.2rem; padding-top:1rem; border-top:1px dashed rgba(201,168,76,0.3);"><strong class="step-title">✨ 회고</strong><p><code>CJ</code>와 같은 점프 명령은 실행 조건뿐 아니라 리셋 시 해제 타이밍까지 고려해야 하며, 물리 동작(서보)과 논리 데이터 이동(큐) 사이의 강력한 인터록 설계가 신뢰성의 핵심임을 깨달았습니다.</p></div>
+        </div>
+      </div>
+
+      <div class="modal-section" style="margin-bottom:0;">
+        <h3>안전 설계</h3>
+        <ul class="info-list">
+          <li><strong>비상정지 회로 (B접점)</strong> FLS·RLS 리미트 센서를 B접점(NC)으로 구성하여, 단선 시에도 신호가 끊겨 안전하게 정지하도록 설계했습니다.</li>
+          <li><strong>인터록 회로</strong> 수동 운전 중 리셋 버튼 오조작이 발생해도 작업 데이터(Queue)가 소실되지 않도록 물리적·논리적 인터록을 설정했습니다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ GCC (MediaPipe & DNN) MODAL ═══════════ -->
+<div id="gccModal" class="modal-backdrop">
+  <div class="modal-window">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeAllModals()"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+    </div>
+    <div class="modal-content">
+      <p class="modal-meta-top">PROJECT 03 · AI융합 로봇SW 개발자 2기 · 4인 프로젝트</p>
+      <h2 class="modal-title-main">MediaPipe &amp; 커스텀 DNN 제스처 인터페이스</h2>
+      <p class="modal-subtitle">GCC(Gesture Command &amp; Control) — 하나의 제스처 인식 엔진으로 PC OS와 IoT 디바이스를 통합 제어</p>
+      <div class="modal-tags-wrap">
+        <span class="tag">MediaPipe</span><span class="tag">TensorFlow / TFLite</span><span class="tag">OpenCV</span><span class="tag">Flask / FastAPI</span><span class="tag">BLE HID (BlueZ)</span><span class="tag">TCP Socket</span><span class="tag">YOLOv10n</span><span class="tag">Raspberry Pi 5</span><span class="tag">SQLite / Peewee</span>
+      </div>
+      <div class="modal-grid-2col">
+        <div class="modal-section" style="margin-bottom:0;">
+          <h3>주제 및 목표</h3>
+          <p>MediaPipe 기반 실시간 손 제스처 인식 엔진과 커스텀 DNN 분류 모델을 결합하여, 하나의 통합 추론 파이프라인으로 PC(마우스/키보드)와 RC 차량을 동시에 제어하는 시스템입니다.</p>
+          <ul class="info-list" style="margin-top:1rem;">
+            <li><strong>직관적 제어</strong> 버튼·조이스틱 없이 손짓만으로 전후좌우·정지 제어</li>
+            <li><strong>실시간 처리</strong> 인식 지연 최소화</li>
+            <li><strong>엣지 배포</strong> Raspberry Pi에서 경량 TFLite 추론</li>
+          </ul>
+        </div>
+        <div class="modal-section" style="margin-bottom:0;">
+          <h3>프로젝트 개요</h3>
+          <ul class="info-list">
+            <li><strong class="label">개발 기간</strong> 2026.03.06 ~ 2026.03.20</li>
+            <li><strong class="label">팀 구성</strong> 4인 팀 (협업)</li>
+            <li><strong class="label">담당 업무</strong> 제스처 인식 파이프라인 설계 및 커스텀 DNN 모델 개발</li>
+            <li><strong class="label">GitHub</strong> <a href="https://github.com/kdm111/GCC" target="_blank" style="color:var(--accent); text-decoration:none;">kdm111/GCC</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>핵심 기여 · 알고리즘</h3>
+        <div class="feature-box">
+          <h4>🖐️ 관절 각도 기반 특징 벡터 (16-D)</h4>
+          <p>MediaPipe의 21개 관절점 3D 좌표를 그대로 쓰지 않고 <strong>각 관절의 각도(angle)로 변환</strong>했습니다. 15개 손가락 관절 각도 + 1개 좌/우손 Binary Flag로 16차원 벡터를 구성 — 좌표는 카메라 거리에 따라 달라지지만 각도는 같은 제스처면 일정하게 유지되어 위치 변화에 강인합니다.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🧠 커스텀 DNN (7-class Multi-label MLP)</h4>
+          <p>각 손가락 굴절 여부 5개 + 주요 관절 접촉(핀치) 2개, 총 7개 라벨을 동시 출력하는 MLP를 설계했습니다. 입력 순서 불변성과 적은 데이터로도 높은 정확도를 확보하도록 구조를 최적화했고, Keras 모델을 <strong>TensorFlow Lite로 변환</strong>하여 Raspberry Pi 5 실시간 추론을 달성했습니다.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🔀 이중 제어 파이프라인</h4>
+          <p>Camera → MediaPipe → DNN → Gesture Controller(EMA 스무딩·히스테리시스·비트마스크 매핑) → HID Output 5단계 파이프라인. <strong>오른손만</strong> 인식 시 마우스 모드(τ=0.12s EMA 커서), <strong>양손</strong> 인식 시 6×6 매트릭스 키보드 모드로 자동 전환합니다.</p>
+        </div>
+        <div class="feature-box">
+          <h4>📡 통신 프로토콜</h4>
+          <p>BLE HID(BlueZ D-Bus)로 별도 드라이버 없이 표준 입력 장치처럼 PC를 제어하고, TCP 소켓 바이너리 프로토콜(struct 패킹)로 RC 차량과 양방향 통신합니다. YOLOv10n(imgsz=320)으로 차량 탑재 실시간 객체 탐지 및 거리 추정도 수행합니다.</p>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>제어 제스처 매핑</h3>
+        <table class="modal-table">
+          <thead><tr><th>제스처</th><th>명령</th><th>동작</th></tr></thead>
+          <tbody>
+            <tr><td>✊ 주먹</td><td>STOP</td><td>모든 모터 정지</td></tr>
+            <tr><td>✋ 손바닥</td><td>FORWARD</td><td>전진 (양쪽 모터 정방향)</td></tr>
+            <tr><td>☝️ 검지</td><td>RIGHT</td><td>우회전 (좌측 모터만)</td></tr>
+            <tr><td>✌️ 브이</td><td>LEFT</td><td>좌회전 (우측 모터만)</td></tr>
+            <tr><td>🤟 특수</td><td>BACKWARD</td><td>후진 (양쪽 모터 역방향)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-section">
+        <h3>Trouble Shooting ①: 프레임 드랍으로 인한 입력 지연</h3>
+        <div class="trouble-box">
+          <div class="trouble-step"><strong class="step-title">🔥 문제 상황</strong><p>MediaPipe + DNN 추론이 프레임당 처리 시간을 지배하여 샘플링 주기가 부족, 입력 반응이 느려지고 연속 제스처 인식에 끊김이 발생.</p></div>
+          <div class="trouble-step"><strong class="step-title">🔍 원인 분석</strong><p>입력 처리와 렌더링이 단일 스레드에서 순차 실행되어 블로킹이 발생.</p></div>
+          <div class="trouble-step"><strong class="step-title">💡 해결 방안</strong><p>입력 처리와 렌더링을 별도 스레드로 분리한 멀티스레드 아키텍처로 전환하여 충분한 샘플링 주기와 부드러운 입력 응답 확보.</p></div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>Trouble Shooting ②: BlueZ Multi-device HID 제어 한계</h3>
+        <div class="trouble-box">
+          <div class="trouble-step"><strong class="step-title">🔥 문제 상황</strong><p>Native BlueZ 기본 구조만으로는 multi-device HID 서버에서 디바이스별 입력 전송을 독립 제어하기 어려움.</p></div>
+          <div class="trouble-step"><strong class="step-title">🔍 원인 분석</strong><p>기본 notification 전송 경로가 모든 연결 디바이스에 동일 입력을 전달하고, 디바이스별 필터링 기능이 부재.</p></div>
+          <div class="trouble-step"><strong class="step-title">💡 해결 방안</strong><p>BlueZ 내부 notification 전송 경로를 수정하고, 각 device state에 block boolean을 추가하여 디바이스별 허용/차단을 관리하도록 D-Bus 인터페이스를 확장 (오픈소스 소스 수정).</p></div>
+        </div>
+      </div>
+
+      <div class="modal-section" style="margin-bottom:0;">
+        <h3>Trouble Shooting ③: 통신 지연 및 명령 유실</h3>
+        <div class="trouble-box">
+          <div class="trouble-step"><strong class="step-title">🔥 문제 상황</strong><p>연속 동일 명령이 매 프레임 전송되어 수신 큐가 쌓이고, 오래된 명령이 순서대로 처리되어 현재 제스처와 불일치.</p></div>
+          <div class="trouble-step"><strong class="step-title">💡 해결 방안</strong><p>이전 명령과 다를 때만 전송하는 중복 명령 제거 로직 + 수신 버퍼 플러싱(최신 명령만 처리)으로 전송 패킷 수를 줄이고 체감 지연을 크게 단축.</p></div>
+          <div class="trouble-step" style="margin-top:1.2rem; padding-top:1rem; border-top:1px dashed rgba(201,168,76,0.3);"><strong class="step-title">✨ 회고</strong><p>원시 좌표를 의미 있는 특징으로 변환하는 도메인 지식의 중요성과, 자원 제약 환경에서의 단계적 최적화(경량화·스레드 병렬화)를 실전에서 체득했습니다.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ STM32 MODAL ═══════════ -->
+<div id="stm32Modal" class="modal-backdrop">
+  <div class="modal-window">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeAllModals()"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+    </div>
+    <div class="modal-content">
+      <p class="modal-meta-top">PROJECT 04 · 임베디드 시스템 개발 · 4인 프로젝트</p>
+      <h2 class="modal-title-main">STM32 WebSocket 기반 RC카 원격 제어 시스템</h2>
+      <p class="modal-subtitle">ESP32 + STM32F411RE 이중화 MCU 아키텍처 기반 저지연 실시간 지능형 모빌리티 플랫폼</p>
+      <div class="modal-tags-wrap">
+        <span class="tag">STM32F411RE (Bare-metal C)</span><span class="tag">ESP32</span><span class="tag">WebSocket</span><span class="tag">UART</span><span class="tag">PWM (TIM1)</span><span class="tag">I2C</span><span class="tag">VL53L0X (TOF)</span><span class="tag">Whisper AI</span><span class="tag">Raspberry Pi 5</span>
+      </div>
+      <div class="modal-grid-2col">
+        <div class="modal-section" style="margin-bottom:0;">
+          <h3>주제 및 목표</h3>
+          <p>WebSocket 기반 웹 대시보드 입력을 ESP32가 UART로 STM32에 전달하여 ESC·Servo를 실시간 제어하고, 통신(ESP32)과 제어(STM32) 역할을 분리해 안정성과 실시간성을 확보합니다.</p>
+          <ul class="info-list" style="margin-top:1rem;">
+            <li><strong>저지연 실시간 제어</strong> WebSocket → UART → PWM 파이프라인</li>
+            <li><strong>다중 입력</strong> 웹 슬라이더 + Whisper 음성 인식</li>
+            <li><strong>안전 기동</strong> ESC Arming, Deadzone, 타각 제한(Clamp)</li>
+            <li><strong>센서 기반</strong> TOF(VL53L0X) 장애물 감지</li>
+          </ul>
+        </div>
+        <div class="modal-section" style="margin-bottom:0;">
+          <h3>프로젝트 개요</h3>
+          <ul class="info-list">
+            <li><strong class="label">개발 기간</strong> 2026.04.03 ~ 2026.04.13</li>
+            <li><strong class="label">팀 구성</strong> 4인 팀 (협업)</li>
+            <li><strong class="label">담당 업무</strong> STM32F411RE Bare-metal 펌웨어 개발</li>
+            <li><strong class="label">GitHub</strong> <a href="https://github.com/kdm111/team2" target="_blank" style="color:var(--accent); text-decoration:none;">kdm111/team2</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>핵심 기여 · 알고리즘</h3>
+        <div class="feature-box">
+          <h4>📨 UART 통신 프로토콜 (스트리밍 파싱)</h4>
+          <p>JSON을 파싱하기 쉬운 ASCII 포맷 <code>ESC=&lt;value&gt; SERVO=&lt;value&gt;\n</code>으로 변환하는 경량 프로토콜을 설계했습니다. 초기 <code>sscanf</code> 전체 파싱의 패킷 유실 문제를, 키워드(E, S) 기준 <strong>스트리밍 파싱</strong>으로 전환하여 부분 데이터만으로도 즉시 복구되도록 개선했습니다.</p>
+        </div>
+        <div class="feature-box">
+          <h4>⚡ PWM 신호 생성 · ESC 제어</h4>
+          <p>Bare-metal 환경에서 TIM1 타이머로 50Hz(20ms 주기) PWM을 생성해 ESC·서보를 제어합니다. ESC 안전 초기화를 위한 <strong>Arming 시퀀스(중립 1540μs를 3초 유지)</strong>를 구현하고, 서보 영점(1915μs)·Deadzone(±100μs)으로 최소 작동 임계값 이하 무효 구간을 제거했습니다.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🎙️ 음성 인식 제어 (Whisper AI)</h4>
+          <p>INMP441 마이크 → ESP32 → PC(FastAPI/Whisper)로 음성을 STT 변환하고, 사전 정의 명령어를 ESC/Servo 값으로 매핑합니다. (예: "앞으로" → ESC=1400, "정지" → ESC=1540) 변환값은 WebSocket으로 ESP32에 전달되어 웹 제어와 동일 흐름으로 처리됩니다.</p>
+        </div>
+        <div class="feature-box">
+          <h4>📏 TOF 센서 장애물 감지</h4>
+          <p>VL53L0X 센서를 I2C로 연동하여 전방 거리를 실시간 측정(30mm~2000mm)합니다. 이동 평균 필터·아웃라이어 제거로 노이즈를 걸러내고, WebSocket을 통해 웹 대시보드에서 위험을 시각화합니다.</p>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>안전 로직</h3>
+        <table class="modal-table">
+          <thead><tr><th>항목</th><th>설정</th><th>목적</th></tr></thead>
+          <tbody>
+            <tr><td>Servo Clamp</td><td>0 ~ 1800 (중립 1325)</td><td>조향축 물리 파손 방지</td></tr>
+            <tr><td>ESC Deadzone</td><td>중립 ±100</td><td>불필요 전류·발열 방지, 확실한 정지</td></tr>
+            <tr><td>Arming 시퀀스</td><td>중립 1540μs / 3초</td><td>미완료 시 모터 출력 강제 차단</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-section">
+        <h3>Trouble Shooting ①: UART 패킷 유실 문제</h3>
+        <div class="trouble-box">
+          <div class="trouble-step"><strong class="step-title">🔥 문제 상황</strong><p>UART 데이터 수신 시 간헐적으로 패킷이 유실되어 제어 명령이 정상 전달되지 않음.</p></div>
+          <div class="trouble-step"><strong class="step-title">🔍 원인 분석</strong><p>수신 데이터 노이즈 및 처리 속도 불일치, <code>sscanf</code> 전체 파싱은 부분 데이터 복구가 불가.</p></div>
+          <div class="trouble-step"><strong class="step-title">💡 해결 방안</strong><p>두 보드의 GND를 공통화하여 통신 전위차를 해결하고, 키워드(E, S) 기반 스트리밍 파싱으로 부분 데이터만으로도 즉시 복구되도록 로직을 개선.</p></div>
+          <div class="trouble-step" style="margin-top:1.2rem; padding-top:1rem; border-top:1px dashed rgba(201,168,76,0.3);"><strong class="step-title">✨ 결과</strong><p>패킷 유실 시에도 시스템이 즉시 정상 상태로 복귀하는 견고성 확보.</p></div>
+        </div>
+      </div>
+
+      <div class="modal-section" style="margin-bottom:0;">
+        <h3>Trouble Shooting ②: ESC 초기화 실패</h3>
+        <div class="trouble-box">
+          <div class="trouble-step"><strong class="step-title">🔥 문제 상황</strong><p>전원 인가 후 ESC가 초기화되지 않아 모터가 동작하지 않음.</p></div>
+          <div class="trouble-step"><strong class="step-title">💡 해결 방안</strong><p>ESC Arming 시퀀스를 Bare-metal 코드로 직접 구현하여 중립 신호(1540μs)를 3초간 유지, ESC가 안정적으로 초기화되어 모터 제어 가능.</p></div>
+          <div class="trouble-step" style="margin-top:1.2rem; padding-top:1rem; border-top:1px dashed rgba(201,168,76,0.3);"><strong class="step-title">✨ 회고</strong><p>RTOS 없이 타이머·UART·PWM 레지스터를 직접 제어하며 임베디드 시스템의 동작 원리와 저지연 실시간 제어의 중요성을 체득했습니다.</p></div>
         </div>
       </div>
     </div>
@@ -722,20 +986,30 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  const projectModal = document.getElementById('projectModal');
-  const plcModal = document.getElementById('plcModal');
+  const modalMap = {
+    capstone: document.getElementById('projectModal'),
+    plc:      document.getElementById('plcModal'),
+    gcc:      document.getElementById('gccModal'),
+    stm32:    document.getElementById('stm32Modal'),
+  };
 
   function openProjectModal(projectId) {
-    if (projectId === 'capstone') { projectModal.classList.add('show'); document.body.classList.add('modal-open'); }
-    else if (projectId === 'plc') { plcModal.classList.add('show'); document.body.classList.add('modal-open'); }
+    const modal = modalMap[projectId];
+    if (!modal) return;
+    modal.classList.add('show');
+    modal.querySelector('.modal-window').scrollTop = 0;
+    document.body.classList.add('modal-open');
   }
-  function closeProjectModal() { projectModal.classList.remove('show'); document.body.classList.remove('modal-open'); }
-  function closePlcModal() { plcModal.classList.remove('show'); document.body.classList.remove('modal-open'); }
-  projectModal.addEventListener('click', (e) => { if (e.target === projectModal) closeProjectModal(); });
-  plcModal.addEventListener('click', (e) => { if (e.target === plcModal) closePlcModal(); });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { closeProjectModal(); closePlcModal(); }
+  function closeAllModals() {
+    Object.values(modalMap).forEach(m => m.classList.remove('show'));
+    document.body.classList.remove('modal-open');
+  }
+
+  // 배경 클릭 시 닫기
+  Object.values(modalMap).forEach(modal => {
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeAllModals(); });
   });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllModals(); });
 </script>
 </body>
 </html>
